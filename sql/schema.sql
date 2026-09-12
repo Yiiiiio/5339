@@ -1,0 +1,3 @@
+-- Owner: D
+-- Placeholder: implement the team-agreed DuckDB DDL here.
+-- No database schema has been implemented yet.

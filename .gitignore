@@ -1,0 +1,24 @@
+# Python and Jupyter
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Operating system
+.DS_Store
+
+# Generated data: distribute separately and include required files in final submission
+/data/raw/*
+!/data/raw/.gitkeep
+/data/external/*
+!/data/external/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+/data/final/*
+!/data/final/.gitkeep
