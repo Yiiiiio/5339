@@ -41,6 +41,22 @@
 
 ## 2. 技术路线与依赖关系
 
+### 原项目说明中的数据来源链接
+
+以下三个链接按英文项目说明原文收录，属于数据来源页面，不一定是可直接下载文件的地址。
+
+| 数据 | 原文网站链接 | 作业要求与用途 | 负责人 |
+| --- | --- | --- | --- |
+| NSW 电动车充电站位置 | [Transport for NSW：EV charging locations](https://opendata.transport.nsw.gov.au/data/dataset/ev-charging-locations) | 与下一行二选一获取充电站数据；原文要求使用 2025 年 12 月版本，并说明该网站需要免费注册登录 | A |
+| 同一充电站数据的替代入口 | [data.gov.au：NSW EV charging locations](https://data.gov.au/data/dataset/nsw-2-ev-charging-locations) | 官方说明提供的替代来源，不是需要额外合并的第二份充电站数据 | A |
+| ABS SA4 区域边界 | [ABS：ASGS Edition 4 数字边界文件](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-4-july-2026-june-2031/access-and-downloads/digital-boundary-files) | 获取 SA4 层级的数字边界 shapefile，用于判断站点所属区域 | A 获取，B 使用 |
+
+原文还将充电运营商网站、Open Charge Map 和 Google Maps 列为数据增强的示例来源，但没有提供其具体网址或 API 端点，也没有要求全部使用。C 选定来源后，应在本 README 补充实际访问链接、API 使用方式、匹配策略和获取时间。
+
+数据获取必须通过 Python 或 Unix 脚本自动完成，不能依赖手动下载。实现时需确认实际下载地址和数据版本，并记录与原文要求之间的任何差异。
+
+### 处理步骤
+
 以下是计划采用的路线；具体依赖和实现方法需在开发、验证后更新。
 
 | 步骤 | 处理内容与可用工具 | 输出 | 负责人 |
