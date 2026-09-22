@@ -1,0 +1,35 @@
+{
+  "d_notebook_fresh_kernel": "passed",
+  "executed_code_cells": 5,
+  "standalone_ddl_and_integrity_tests": "3 passed",
+  "database_reopened_read_only": "passed",
+  "embedded_and_exported_quality_report": "identical",
+  "source_files_unchanged": [
+    "data/external/.gitkeep",
+    "data/final/.gitkeep",
+    "data/processed/.gitkeep",
+    "data/processed/charger_attributes.csv",
+    "data/processed/charger_sa4.csv",
+    "data/processed/charger_sa4_review.csv",
+    "data/processed/chargers_clean.csv",
+    "data/raw/.gitkeep",
+    "data/raw/SA4_2026_AUST_SHP_GDA2020.zip",
+    "data/raw/ev_20251216.csv",
+    "notebooks/01 acquire_clean.ipynb",
+    "notebooks/02_spatial.ipynb",
+    "notebooks/03_augment.ipynb"
+  ],
+  "table_row_counts": {
+    "charger_records": 1958,
+    "operators": 46,
+    "sa4_regions": 108,
+    "charger_sa4": 1958,
+    "spatial_review": 1,
+    "charger_attributes": 216,
+    "attribute_connectors": 355,
+    "build_inputs": 7,
+    "build_metadata": 1
+  },
+  "full_abc_reproduction": "not run: C raw caches and review CSVs absent",
+  "independent_team_member_review": "pending"
+}
