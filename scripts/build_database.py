@@ -1,4 +1,3 @@
-"""Build D's database from the unchanged A/B/C handoff files."""
 from __future__ import annotations
 
 import argparse

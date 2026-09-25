@@ -1,4 +1,3 @@
-"""Integration checks for D; run from the project root after installing dependencies."""
 import csv
 import hashlib
 import shutil
