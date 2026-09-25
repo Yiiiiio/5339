@@ -46,7 +46,7 @@ Select the `Python (COMP5339)` kernel when opening the notebooks.
 
 Start JupyterLab from the project root. Open the notebooks in `notebooks/` and select the `Python (COMP5339)` kernel. Run all cells in each notebook in the following order:
 
-1. `01 acquire_clean.ipynb`: Downloads and cleans the charger data, downloads and extracts the SA4 boundaries, and saves `data/processed/chargers_clean.csv`.
+1. `01_acquire_clean.ipynb`: Downloads and cleans the charger data, downloads and extracts the SA4 boundaries, and saves `data/processed/chargers_clean.csv`.
 2. `02_spatial.ipynb`: Assigns chargers to SA4 regions and saves `charger_sa4.csv` and `charger_sa4_review.csv` in `data/processed/`.
 3. `03_augment.ipynb`: Uses Open Charge Map data to add charger attributes and saves `data/processed/charger_attributes.csv`. It uses local API caches when available; otherwise, an API key is required. New API data may change the results.
 4. `04_database.ipynb`: Builds `data/final/project.duckdb` and runs validation and example queries.

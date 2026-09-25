@@ -15,7 +15,7 @@
     "data/raw/.gitkeep",
     "data/raw/SA4_2026_AUST_SHP_GDA2020.zip",
     "data/raw/ev_20251216.csv",
-    "notebooks/01 acquire_clean.ipynb",
+    "notebooks/01_acquire_clean.ipynb",
     "notebooks/02_spatial.ipynb",
     "notebooks/03_augment.ipynb"
   ],
