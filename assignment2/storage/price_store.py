@@ -20,7 +20,7 @@ REQUIRED_FIELDS = {
     "event_id",
     "event_type",
     "station_id",
-    "ts",
+    "event_time",
     "price_per_kwh",
     "wholesale_per_kwh",
 }
@@ -46,14 +46,14 @@ def _required_text(event: Mapping[str, Any], field: str) -> str:
 
 def _parse_timestamp(value: Any) -> datetime:
     if not isinstance(value, str) or not value.strip():
-        raise ValueError("ts must be a non-empty ISO timestamp string")
+        raise ValueError("event_time must be a non-empty ISO timestamp string")
     try:
         timestamp = datetime.fromisoformat(value.strip())
     except ValueError as error:
-        raise ValueError(f"Invalid ts value: {value}") from error
+        raise ValueError(f"Invalid event_time value: {value}") from error
     if timestamp.tzinfo is not None:
         raise ValueError(
-            "ts must not contain a timezone until the team agrees on one interpretation"
+            "event_time must not contain a timezone until the team agrees on one interpretation"
         )
     return timestamp
 
@@ -84,7 +84,7 @@ def _normalise_event(event: Mapping[str, Any]) -> dict[str, Any]:
         "event_id": event_id,
         "event_type": event_type,
         "station_id": _required_text(event, "station_id"),
-        "event_ts": _parse_timestamp(event["ts"]),
+        "event_ts": _parse_timestamp(event["event_time"]),
         "price_per_kwh": _parse_decimal(
             event["price_per_kwh"], "price_per_kwh", non_negative=True
         ),
@@ -152,7 +152,7 @@ def store_price_event(database_path: str | Path, event: Mapping[str, Any]) -> st
                     connection.execute("COMMIT")
                     return "duplicate"
                 raise ValueError(
-                    "Conflicting price values for the same station_id and ts"
+                    "Conflicting price values for the same station_id and event_time"
                 )
 
             connection.execute(
@@ -188,7 +188,7 @@ def _price_row_to_dict(row: tuple[Any, ...]) -> dict[str, Any]:
     return {
         "event_id": row[0],
         "station_id": row[1],
-        "ts": row[2].isoformat(),
+        "event_time": row[2].isoformat(),
         "price_per_kwh": float(row[3]),
         "wholesale_per_kwh": None if row[4] is None else float(row[4]),
         "received_at": row[5].isoformat(),

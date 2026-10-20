@@ -47,7 +47,7 @@ class PriceStoreTests(unittest.TestCase):
             "event_id": f"price_update:{row['station_id']}:{row['ts']}:{suffix}",
             "event_type": "price_update",
             "station_id": row["station_id"],
-            "ts": row["ts"],
+            "event_time": row["ts"],
             "price_per_kwh": row["price_per_kwh"],
             "wholesale_per_kwh": row["wholesale_per_kwh"],
         }
@@ -89,7 +89,7 @@ class PriceStoreTests(unittest.TestCase):
             "event_id": "price_update:missing:2026-09-15T00:00:00",
             "event_type": "price_update",
             "station_id": "missing",
-            "ts": "2026-09-15T00:00:00",
+            "event_time": "2026-09-15T00:00:00",
             "price_per_kwh": 0.7,
             "wholesale_per_kwh": 0.07,
         }
@@ -102,7 +102,7 @@ class PriceStoreTests(unittest.TestCase):
             "event_id": "first",
             "event_type": "price_update",
             "station_id": station_id,
-            "ts": "2026-09-15T00:00:00",
+            "event_time": "2026-09-15T00:00:00",
             "price_per_kwh": 0.7,
             "wholesale_per_kwh": 0.07,
         }
@@ -117,14 +117,14 @@ class PriceStoreTests(unittest.TestCase):
             "event_id": "newer",
             "event_type": "price_update",
             "station_id": station_id,
-            "ts": "2026-09-15T03:00:00",
+            "event_time": "2026-09-15T03:00:00",
             "price_per_kwh": 0.8,
             "wholesale_per_kwh": 0.08,
         }
         older = dict(
             newer,
             event_id="older",
-            ts="2026-09-15T02:00:00",
+            event_time="2026-09-15T02:00:00",
             price_per_kwh=0.6,
         )
         store_price_event(self.database_path, newer)
