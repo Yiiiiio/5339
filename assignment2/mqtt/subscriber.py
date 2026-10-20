@@ -50,10 +50,15 @@ def parse_arguments() -> argparse.Namespace:
         help="Optional JSONL file for accepted events.",
     )
     parser.add_argument(
+        "--database",
+        type=Path,
+        help="Existing A2 copy of the A1 DuckDB database; enables price storage.",
+    )
+    parser.add_argument(
         "--max-messages",
         type=int,
         default=0,
-        help="Stop after this many accepted events; 0 waits until Ctrl+C.",
+        help="Stop after N accepted events (includes stored duplicates in database mode); 0 waits.",
     )
     args = parser.parse_args()
     if not 1 <= args.port <= 65535:
@@ -149,6 +154,29 @@ class PriceSubscriber:
         self.accepted_count = 0
         self.rejected_count = 0
         self.duplicate_count = 0
+        self.storage_error_count = 0
+        self.store_event = None
+        self.storage_errors: tuple[type[Exception], ...] = (ValueError, OSError)
+        self.database_path = getattr(args, "database", None)
+        if self.database_path is not None:
+            self.database_path = Path(self.database_path).resolve()
+            if not self.database_path.is_file():
+                raise FileNotFoundError(
+                    f"A2 database does not exist: {self.database_path}. "
+                    "Copy the A1 database first."
+                )
+            # Support both `python -m ...` and the documented script command.
+            if not __package__:
+                sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+            import duckdb
+            from assignment2.storage.price_store import (
+                initialise_database,
+                store_price_event,
+            )
+
+            initialise_database(self.database_path)
+            self.store_event = store_price_event
+            self.storage_errors = (ValueError, OSError, duckdb.Error)
 
         self.client = mqtt.Client(
             callback_api_version=mqtt.CallbackAPIVersion.VERSION2,
@@ -209,17 +237,35 @@ class PriceSubscriber:
             return
 
         event_id = event["event_id"]
-        if event_id in self.seen_event_ids:
+        storage_result = None
+        if self.store_event is not None:
+            try:
+                storage_result = self.store_event(self.database_path, event)
+            except self.storage_errors as exc:
+                self.storage_error_count += 1
+                print(f"STORE_ERROR event_id={event_id}: {exc}", file=sys.stderr, flush=True)
+                return
+        elif event_id in self.seen_event_ids:
             self.duplicate_count += 1
             print(f"DUPLICATE event_id={event_id}; ignored", flush=True)
+            return
+        if storage_result == "duplicate":
+            self.duplicate_count += 1
+            print(f"DUPLICATE event_id={event_id}; already stored", flush=True)
+            self.check_message_limit()
             return
         self.seen_event_ids.add(event_id)
 
         if self.args.output:
-            self.args.output.parent.mkdir(parents=True, exist_ok=True)
-            with self.file_lock, self.args.output.open("a", encoding="utf-8") as stream:
-                stream.write(json.dumps(event, ensure_ascii=False, separators=(",", ":")))
-                stream.write("\n")
+            try:
+                self.args.output.parent.mkdir(parents=True, exist_ok=True)
+                with self.file_lock, self.args.output.open("a", encoding="utf-8") as stream:
+                    stream.write(json.dumps(event, ensure_ascii=False, separators=(",", ":")))
+                    stream.write("\n")
+            except OSError as exc:
+                print(f"LOG_ERROR event_id={event_id}: {exc}", file=sys.stderr, flush=True)
+                self.stop_event.set()
+                self.storage_error_count += 1
 
         self.accepted_count += 1
         print(
@@ -229,8 +275,17 @@ class PriceSubscriber:
             f"price={event['price_per_kwh']:.2f}",
             flush=True,
         )
+        if storage_result == "inserted":
+            print(f"STORED event_id={event_id}", flush=True)
 
-        if self.args.max_messages and self.accepted_count >= self.args.max_messages:
+        self.check_message_limit()
+
+    def check_message_limit(self) -> None:
+        # A full replay of already stored events must also be able to stop.
+        completed = self.accepted_count
+        if self.store_event is not None:
+            completed += self.duplicate_count
+        if self.args.max_messages and completed >= self.args.max_messages:
             self.stop_event.set()
 
     def run(self) -> int:
@@ -250,10 +305,11 @@ class PriceSubscriber:
             self.client.loop_stop()
             print(
                 f"Stopped. accepted={self.accepted_count} "
-                f"duplicates={self.duplicate_count} rejected={self.rejected_count}",
+                f"duplicates={self.duplicate_count} rejected={self.rejected_count} "
+                f"storage_errors={self.storage_error_count}",
                 flush=True,
             )
-        return 0
+        return 1 if self.storage_error_count else 0
 
 
 def main() -> int:
