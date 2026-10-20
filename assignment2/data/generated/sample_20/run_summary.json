@@ -1,0 +1,25 @@
+{
+  "command": "python3 assignment2/generator/generate_dataset.py --stations assignment2/data/input/stations_sample.csv --start 2026-09-15 --days 1 --sessions-per-connector-day 3 2 --seed 5339 --out assignment2/data/generated/sample_20",
+  "teacher_script_modified": false,
+  "counts": {
+    "stations": 20,
+    "hourly_prices": 480,
+    "sessions": 218,
+    "meter_events": 6040
+  },
+  "checks": {
+    "all_24_hours_have_aemo_values": true,
+    "station_references_valid": true,
+    "session_references_valid": true,
+    "unique_session_ids": true,
+    "session_timestamp_order_valid": true
+  },
+  "potential_price_updates_including_initial_state": 200,
+  "last_session_end": "2026-09-16T00:25:22",
+  "notes": [
+    "Development sample only; not the final assignment dataset.",
+    "Timestamps are timezone-naive as emitted by the teacher generator. Agree on a time interpretation before publishing.",
+    "No MQTT events have been published.",
+    "Some sessions may end after the one-day start window."
+  ]
+}
