@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Publish prepared EV charger price-update events to an MQTT broker.
+"""Publish prepared EV charger events to an MQTT broker.
 
-The program reads one JSON object per line from ``price_events.jsonl``, checks
-the event schema and chronological order, and publishes each event to
-``evchargers/{station_id}/price`` using MQTT QoS 1. A delay of at least
-0.1 seconds is enforced between consecutive messages.
+The program reads one JSON object per line (``price_events.jsonl`` or the
+four-type ``replay_events.jsonl``), checks the event schema and chronological
+order, and publishes each event to ``evchargers/{station_id}/{suffix}``
+(suffix ``price``, ``session_start``, ``meter`` or ``session_end``) using MQTT
+QoS 1. A delay of at least 0.1 seconds is enforced between consecutive messages.
 
 Example:
-    python publisher.py --events ../data/events/price_events.jsonl
+    python publisher.py --events ../data/events/replay_events.jsonl
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 import sys
 import time
 from datetime import datetime
@@ -24,22 +24,19 @@ from typing import Any
 
 import paho.mqtt.client as mqtt
 
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-REQUIRED_FIELDS = {
-    "event_id",
-    "event_type",
-    "event_time",
-    "station_id",
-    "price_per_kwh",
-    "wholesale_per_kwh",
-}
+from assignment2.mqtt.event_schema import describe, topic_for, validate_event as validate_schema
+
+
 MINIMUM_INTERVAL_SECONDS = 0.1
 
 
 def parse_arguments() -> argparse.Namespace:
     assignment_dir = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(
-        description="Publish prepared EV charger price_update events via MQTT."
+        description="Publish prepared EV charger events via MQTT."
     )
     parser.add_argument(
         "--events",
@@ -52,7 +49,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--topic-prefix",
         default="evchargers",
-        help="Prefix for evchargers/{station_id}/price topics.",
+        help="Prefix for evchargers/{station_id}/{suffix} topics.",
     )
     parser.add_argument(
         "--client-id",
@@ -88,64 +85,12 @@ def parse_arguments() -> argparse.Namespace:
     return args
 
 
-def require_nonempty_string(event: dict[str, Any], field: str, line: int) -> str:
-    value = event[field]
-    if not isinstance(value, str) or not value.strip():
-        raise ValueError(f"Line {line}: {field} must be a non-empty string")
-    return value.strip()
-
-
-def require_finite_number(event: dict[str, Any], field: str, line: int) -> float:
-    value = event[field]
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError(f"Line {line}: {field} must be numeric")
-    number = float(value)
-    if not math.isfinite(number):
-        raise ValueError(f"Line {line}: {field} must be finite")
-    return number
-
-
 def validate_event(raw_event: Any, line: int) -> tuple[dict[str, Any], datetime]:
     """Validate one JSONL record and return its normalized event and timestamp."""
-    if not isinstance(raw_event, dict):
-        raise ValueError(f"Line {line}: event must be a JSON object")
-    missing = REQUIRED_FIELDS - raw_event.keys()
-    if missing:
-        raise ValueError(
-            f"Line {line}: missing required fields: {', '.join(sorted(missing))}"
-        )
-
-    event_id = require_nonempty_string(raw_event, "event_id", line)
-    event_type = require_nonempty_string(raw_event, "event_type", line)
-    event_time = require_nonempty_string(raw_event, "event_time", line)
-    station_id = require_nonempty_string(raw_event, "station_id", line)
-    if event_type != "price_update":
-        raise ValueError(f"Line {line}: unsupported event_type {event_type!r}")
-    if any(char in station_id for char in "/+#"):
-        raise ValueError(
-            f"Line {line}: station_id cannot contain '/', '+' or '#' in an MQTT topic"
-        )
     try:
-        timestamp = datetime.fromisoformat(event_time)
+        return validate_schema(raw_event)
     except ValueError as exc:
-        raise ValueError(
-            f"Line {line}: event_time must be an ISO 8601 timestamp"
-        ) from exc
-
-    price = require_finite_number(raw_event, "price_per_kwh", line)
-    wholesale = require_finite_number(raw_event, "wholesale_per_kwh", line)
-    if price < 0:
-        raise ValueError(f"Line {line}: price_per_kwh cannot be negative")
-
-    normalized = {
-        "event_id": event_id,
-        "event_type": event_type,
-        "event_time": event_time,
-        "station_id": station_id,
-        "price_per_kwh": price,
-        "wholesale_per_kwh": wholesale,
-    }
-    return normalized, timestamp
+        raise ValueError(f"Line {line}: {exc}") from exc
 
 
 def load_events(path: Path) -> list[dict[str, Any]]:
@@ -243,10 +188,7 @@ class PricePublisher:
 
             print(f"Connected; publishing {len(events)} events with QoS 1", flush=True)
             for index, event in enumerate(events, start=1):
-                topic = (
-                    f"{self.args.topic_prefix.rstrip('/')}/"
-                    f"{event['station_id']}/price"
-                )
+                topic = topic_for(self.args.topic_prefix, event)
                 payload = json.dumps(event, ensure_ascii=False, separators=(",", ":"))
                 message_info = self.client.publish(topic, payload, qos=1, retain=False)
                 if message_info.rc != mqtt.MQTT_ERR_SUCCESS:
@@ -272,10 +214,7 @@ class PricePublisher:
 
                 sent += 1
                 print(
-                    "PUBLISHED "
-                    f"#{index} event_id={event['event_id']} "
-                    f"station={event['station_id']} time={event['event_time']} "
-                    f"price={event['price_per_kwh']:.2f}",
+                    f"PUBLISHED #{index} event_id={event['event_id']} {describe(event)}",
                     flush=True,
                 )
                 if index < len(events):

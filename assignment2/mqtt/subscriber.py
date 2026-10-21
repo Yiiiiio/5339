@@ -1,40 +1,43 @@
 #!/usr/bin/env python3
-"""Subscribe to MQTT price updates, validate them, and log accepted events."""
+"""Subscribe to MQTT charger events, validate them, and log or store accepted events.
+
+All four event types (``price_update``, ``session_start``, ``meter``,
+``session_end``) are accepted. With ``--database`` each event is passed to the
+storage dispatcher ``store_event``.
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 import signal
 import sys
-from datetime import datetime
 from pathlib import Path
 from threading import Event, Lock
 from typing import Any
 
 import paho.mqtt.client as mqtt
 
+# Support both `python -m ...` and the documented script command.
+if not __package__:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-REQUIRED_FIELDS = {
-    "event_id",
-    "event_type",
-    "event_time",
-    "station_id",
-    "price_per_kwh",
-    "wholesale_per_kwh",
-}
+from assignment2.mqtt.event_schema import (
+    EVENT_TYPE_BY_SUFFIX,
+    describe,
+    validate_event as validate_schema,
+)
 
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Subscribe to and validate EV charger price_update events."
+        description="Subscribe to and validate EV charger events."
     )
     parser.add_argument("--host", default="localhost", help="MQTT Broker host.")
     parser.add_argument("--port", type=int, default=1883, help="MQTT Broker port.")
     parser.add_argument(
         "--topic",
-        default="evchargers/+/price",
+        default="evchargers/+/+",
         help="MQTT subscription topic filter.",
     )
     parser.add_argument(
@@ -70,30 +73,14 @@ def parse_arguments() -> argparse.Namespace:
     return args
 
 
-def require_nonempty_string(event: dict[str, Any], field: str) -> str:
-    value = event[field]
-    if not isinstance(value, str) or not value.strip():
-        raise ValueError(f"{field} must be a non-empty string")
-    return value.strip()
-
-
-def require_finite_number(event: dict[str, Any], field: str) -> float:
-    value = event[field]
-    if isinstance(value, bool) or not isinstance(value, (int, float)):
-        raise ValueError(f"{field} must be numeric")
-    number = float(value)
-    if not math.isfinite(number):
-        raise ValueError(f"{field} must be finite")
-    return number
-
-
-def station_from_topic(topic: str) -> str:
+def parse_topic(topic: str) -> tuple[str, str]:
+    """Return ``(station_id, event_type)`` from ``evchargers/{station_id}/{suffix}``."""
     parts = topic.split("/")
-    if len(parts) != 3 or parts[0] != "evchargers" or parts[2] != "price":
+    if len(parts) != 3 or parts[0] != "evchargers" or parts[2] not in EVENT_TYPE_BY_SUFFIX:
         raise ValueError(f"unexpected topic structure: {topic!r}")
     if not parts[1]:
         raise ValueError("topic station_id cannot be empty")
-    return parts[1]
+    return parts[1], EVENT_TYPE_BY_SUFFIX[parts[2]]
 
 
 def validate_event(payload: bytes, topic: str) -> dict[str, Any]:
@@ -107,42 +94,17 @@ def validate_event(payload: bytes, topic: str) -> dict[str, Any]:
     except json.JSONDecodeError as exc:
         raise ValueError(f"payload is not valid JSON: {exc.msg}") from exc
 
-    if not isinstance(event, dict):
-        raise ValueError("payload must be a JSON object")
-    missing = REQUIRED_FIELDS - event.keys()
-    if missing:
-        raise ValueError("missing required fields: " + ", ".join(sorted(missing)))
-
-    event_id = require_nonempty_string(event, "event_id")
-    event_type = require_nonempty_string(event, "event_type")
-    event_time = require_nonempty_string(event, "event_time")
-    station_id = require_nonempty_string(event, "station_id")
-    if event_type != "price_update":
-        raise ValueError(f"unsupported event_type: {event_type!r}")
-    try:
-        datetime.fromisoformat(event_time)
-    except ValueError as exc:
-        raise ValueError("event_time must be an ISO 8601 timestamp") from exc
-
-    topic_station = station_from_topic(topic)
-    if topic_station != station_id:
+    event, _ = validate_schema(event)
+    topic_station, topic_type = parse_topic(topic)
+    if topic_station != event["station_id"]:
         raise ValueError(
-            f"topic station_id {topic_station!r} does not match payload {station_id!r}"
+            f"topic station_id {topic_station!r} does not match payload {event['station_id']!r}"
         )
-
-    price = require_finite_number(event, "price_per_kwh")
-    wholesale = require_finite_number(event, "wholesale_per_kwh")
-    if price < 0:
-        raise ValueError("price_per_kwh cannot be negative")
-
-    return {
-        "event_id": event_id,
-        "event_type": event_type,
-        "event_time": event_time,
-        "station_id": station_id,
-        "price_per_kwh": price,
-        "wholesale_per_kwh": wholesale,
-    }
+    if topic_type != event["event_type"]:
+        raise ValueError(
+            f"topic is for {topic_type!r} but payload event_type is {event['event_type']!r}"
+        )
+    return event
 
 
 class PriceSubscriber:
@@ -165,17 +127,12 @@ class PriceSubscriber:
                     f"A2 database does not exist: {self.database_path}. "
                     "Copy the A1 database first."
                 )
-            # Support both `python -m ...` and the documented script command.
-            if not __package__:
-                sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
             import duckdb
-            from assignment2.storage.price_store import (
-                initialise_database,
-                store_price_event,
-            )
+            from assignment2.storage.price_store import initialise_database
+            from assignment2.storage.session_store import store_event
 
             initialise_database(self.database_path)
-            self.store_event = store_price_event
+            self.store_event = store_event
             self.storage_errors = (ValueError, OSError, duckdb.Error)
 
         self.client = mqtt.Client(
@@ -269,10 +226,7 @@ class PriceSubscriber:
 
         self.accepted_count += 1
         print(
-            "RECEIVED "
-            f"#{self.accepted_count} event_id={event_id} "
-            f"station={event['station_id']} time={event['event_time']} "
-            f"price={event['price_per_kwh']:.2f}",
+            f"RECEIVED #{self.accepted_count} event_id={event_id} {describe(event)}",
             flush=True,
         )
         if storage_result == "inserted":

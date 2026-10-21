@@ -66,3 +66,43 @@ temporary copy of the real A1 database. It checks 60 initial writes, 60
 duplicates after restarting the subscriber, 20 latest prices at 17:00,
 conflict detection and manual retry after a failed write.
 It does not establish a live MQTT connection or modify the submitted A2 DB.
+
+# Session and meter storage (four event types)
+
+`storage/session_store.py` adds `session_start`, `session_end` and `meter`
+storage to the same A2 database; the DDL is appended to `sql/a2_schema.sql`
+and is applied by the same `initialise_database` call. The subscriber now
+calls `store_event(path, event)`, which sends `price_update` to
+`store_price_event` and the other types to `store_session_event` /
+`store_meter_event`.
+
+Tables and views:
+
+- `session_events`: received `session_start` / `session_end` events, one per
+  session and type (`UNIQUE (session_id, event_type)`). Final energy, cost and
+  charge-end time are columns that only `session_end` fills.
+- `meter_readings`: received readings, `UNIQUE (session_id, event_ts)`.
+  `energy_kwh` is cumulative per session and is never summed across rows.
+- `session_state` (view): one row per session; `active` while no end has been
+  received, then `completed`. An end that arrives before its start still
+  yields one completed session.
+- `station_session_metrics` (view): active sessions, occupied connectors,
+  completed sessions, completed kWh and revenue per station.
+
+Metrics are derived from stored events instead of counters, so a duplicate
+message cannot be counted twice and a replay of the same file changes nothing.
+
+Duplicate and conflict rules follow the price stage: same `event_id` and
+content, or same natural key and content, returns `duplicate`; same ID or key
+with different content raises `ValueError`; so does a session whose start,
+end or readings name a different station or connector, an unknown station,
+or `soc_pct` above 100.
+
+Queries for the dashboard: `get_station_session_metrics(path, station_id)`,
+`get_station_sessions(path, station_id)` (active first, then recent completed,
+with reading counts) and `get_session_readings(path, session_id)` in event-time
+order.
+
+Each write opens one short DuckDB connection; on the development machine a
+stored event took about 18 ms, well inside the 0.1 s publishing interval.
+Checks: `tests/test_session_store.py` and `tests/test_dashboard.py`.
