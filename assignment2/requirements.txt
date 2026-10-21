@@ -1,2 +1,4 @@
 paho-mqtt==2.1.0
 duckdb==1.5.5
+dash==4.4.1
+dash-leaflet==1.1.3
