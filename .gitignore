@@ -23,3 +23,6 @@ __pycache__/
 !/data/processed/.gitkeep
 /data/final/*
 !/data/final/.gitkeep
+
+# Dashboard demo database copies (recreate with assignment2/dashboard/prepare_demo_db.py)
+/assignment2/data/demo/

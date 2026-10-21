@@ -247,3 +247,65 @@ The current stage has completed:
 - MQTT subscription, validation, and received-event logging; and
 - an end-to-end test of all 60 replay events.
 
+
+## 12. Four-type replay (`replay_events.jsonl`)
+
+Prepared by `mqtt/prepare_replay_events.py` from `prices_hourly.csv`,
+`sessions.csv` and `session_metering.csv`, using the same window
+`[2026-09-15T15:00:00, 2026-09-15T19:00:00)`:
+
+```bash
+python assignment2/mqtt/prepare_replay_events.py
+```
+
+| Event type | Events | Before window start |
+|---|---:|---:|
+| `price_update` | 60 | 0 |
+| `session_start` | 69 | 4 |
+| `meter` | 1,672 | 75 |
+| `session_end` | 60 | 0 |
+| **Total** | **1,861** | |
+
+Window rules:
+
+- Prices: each station's effective price at the window start plus every
+  change inside the window. The 60 price events are identical to
+  `price_events.jsonl`.
+- Sessions: every session overlapping the window (`start_ts < end` and
+  `end_ts >= start`) contributes its `session_start` and all of its readings
+  before the window end, even when they precede the window start. Four
+  sessions were already charging at 15:00; their earlier start and readings
+  are kept at their original times, so they are not shown as idle and their
+  curves are complete. `session_end` is included only if `end_ts` is inside
+  the window; nine sessions are still active at 19:00.
+- Event times are never shifted. Events are sorted by event time, then
+  `price_update`, `session_start`, `meter`, `session_end`, so a session's
+  start precedes its readings and its last reading precedes its end (some
+  sessions have a reading at the same second as their end).
+
+Message fields (all events also carry `event_id`, `event_type`, `event_time`,
+`station_id`):
+
+| Type | Topic suffix | Fields |
+|---|---|---|
+| `price_update` | `price` | `price_per_kwh`, `wholesale_per_kwh` |
+| `session_start` | `session_start` | `session_id`, `connector_id`, `vehicle_model`, `price_per_kwh` |
+| `meter` | `meter` | `session_id`, `connector_id`, `voltage_v`, `current_a`, `power_kw`, `energy_kwh` (cumulative), `soc_pct` |
+| `session_end` | `session_end` | `session_id`, `connector_id`, `charge_end_time`, `charge_minutes`, `energy_kwh`, `avg_kw`, `peak_kw`, `price_per_kwh`, `cost_aud` |
+
+A session's final energy and cost are only in `session_end`; `session_start`
+carries only what is known when the car plugs in. `event_id` is a stable
+hash of type, session (or station) and event time.
+
+Topics are `evchargers/{station_id}/{suffix}`; the subscriber's default
+filter is now `evchargers/+/+` and it rejects a payload whose `event_type`
+does not match its topic. The field rules live in `mqtt/event_schema.py` and
+are shared by the preparation script, publisher and subscriber.
+`price_events.jsonl` still publishes and validates unchanged.
+
+Live result (21 October 2026, local amqtt broker in place of Mosquitto,
+dashboard with in-process subscriber, publisher `--interval 0.1`):
+`published=1861 failed=0`, 1,861 `STORED`, no rejected, duplicate or storage
+errors; the database then held 60 price events, 69 starts, 60 ends and 1,672
+readings, with 9 active and 60 completed sessions. The submitted
+`data/final/project_a2.duckdb` is the database from this run.
