@@ -1,0 +1,18 @@
+{
+  "transport": "Local MQTT broker, QoS 1",
+  "published": 1482,
+  "received": 1482,
+  "exact_payload_match": true,
+  "replay_sha256": "ba6202b670ce070ebc98f1ec84a2b252adaaf7ac12098dab0d645333870f8828",
+  "database_counts": {
+    "price_events": 866,
+    "latest_station_price": 433,
+    "session_events": 31,
+    "meter_readings": 585,
+    "session_state": 25,
+    "session_status": {
+      "active": 19,
+      "completed": 6
+    }
+  }
+}

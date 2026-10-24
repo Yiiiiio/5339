@@ -32,7 +32,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        default=assignment_dir / "data/generated/sample_20/prices_hourly.csv",
+        default=assignment_dir / "data/generated/dc_data/prices_hourly.csv",
         help="Path to prices_hourly.csv.",
     )
     parser.add_argument(
@@ -43,12 +43,12 @@ def parse_arguments() -> argparse.Namespace:
     )
     parser.add_argument(
         "--start",
-        default="2026-09-15T15:00:00",
+        default="2026-09-15T00:55:00",
         help="Inclusive replay-window start in ISO 8601 format.",
     )
     parser.add_argument(
         "--end",
-        default="2026-09-15T19:00:00",
+        default="2026-09-15T01:05:00",
         help="Exclusive replay-window end in ISO 8601 format.",
     )
     return parser.parse_args()
@@ -157,11 +157,14 @@ def prepare_events(
         raise ValueError("Replay-window start must be earlier than end.")
 
     changed_records = retain_price_changes(records)
-    selected = [
-        record
-        for record in changed_records
-        if window_start <= record["timestamp"] < window_end
-    ]
+    initial = {}
+    selected = []
+    for record in sorted(changed_records, key=lambda item: item["timestamp"]):
+        if record["timestamp"] <= window_start:
+            initial[record["station_id"]] = record
+        elif record["timestamp"] < window_end:
+            selected.append(record)
+    selected.extend(initial.values())
     selected.sort(key=lambda item: (item["timestamp"], item["station_id"]))
 
     events = [

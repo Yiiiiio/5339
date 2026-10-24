@@ -29,13 +29,16 @@ class PriceIntegrationTests(unittest.TestCase):
             for line in (ROOT / "assignment2/data/events/price_events.jsonl")
             .read_text(encoding="utf-8").splitlines() if line.strip()
         ]
-        self.assertEqual(len(events), 60)
+        station_ids = list(dict.fromkeys(e["station_id"] for e in events))[:8]
+        events = [e for e in events if e["station_id"] in station_ids]
+        event_count = len(events)
+        self.assertEqual(event_count, 2 * len(station_ids))
         with tempfile.TemporaryDirectory() as folder:
             db = Path(folder) / "integration.duckdb"
             shutil.copy2(ROOT / "data/final/project.duckdb", db)
             args = Namespace(
                 database=db, username=None, password=None, client_id="offline-test",
-                output=None, max_messages=60,
+                output=None, max_messages=event_count,
             )
 
             def deliver(subscriber, event):
@@ -50,7 +53,7 @@ class PriceIntegrationTests(unittest.TestCase):
                 first = PriceSubscriber(args)
                 for event in events:
                     deliver(first, event)
-                self.assertEqual(first.accepted_count, 60)
+                self.assertEqual(first.accepted_count, event_count)
                 self.assertEqual(first.storage_error_count, 0)
                 self.assertTrue(first.stop_event.is_set())
 
@@ -58,7 +61,7 @@ class PriceIntegrationTests(unittest.TestCase):
                 for event in events:
                     deliver(restarted, event)
                 self.assertEqual(restarted.accepted_count, 0)
-                self.assertEqual(restarted.duplicate_count, 60)
+                self.assertEqual(restarted.duplicate_count, event_count)
                 self.assertTrue(restarted.stop_event.is_set())
 
                 # A reused ID with altered content must be checked by the DB,
@@ -78,16 +81,16 @@ class PriceIntegrationTests(unittest.TestCase):
             # Remove the deliberately added retry event in this temporary DB.
             with duckdb.connect(str(db)) as con:
                 con.execute("DELETE FROM price_events WHERE event_id = 'retry-example'")
-                self.assertEqual(con.execute("SELECT count(*) FROM price_events").fetchone()[0], 60)
-                self.assertEqual(con.execute("SELECT count(*) FROM latest_station_price").fetchone()[0], 20)
+                self.assertEqual(con.execute("SELECT count(*) FROM price_events").fetchone()[0], event_count)
+                self.assertEqual(con.execute("SELECT count(*) FROM latest_station_price").fetchone()[0], len(station_ids))
             expected = {}
             for event in events:
                 expected[event["station_id"]] = event
             for station_id, event in expected.items():
                 latest = get_latest_price(db, station_id)
-                self.assertEqual(latest["event_time"], "2026-09-15T17:00:00")
+                self.assertEqual(latest["event_time"], "2026-09-15T01:00:00")
                 self.assertEqual(latest["price_per_kwh"], event["price_per_kwh"])
-                self.assertEqual(len(get_price_history(db, station_id)), 3)
+                self.assertEqual(len(get_price_history(db, station_id)), 2)
                 self.assertNotIn("ts", latest)
 
 

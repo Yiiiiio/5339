@@ -24,7 +24,7 @@ Install A2 dependencies:
 After starting a broker on localhost, start the subscriber first:
 
 ```bat
-.venv\Scripts\python.exe assignment2/mqtt/subscriber.py --database assignment2/data/final/project_a2.duckdb --max-messages 60
+.venv\Scripts\python.exe assignment2/mqtt/subscriber.py --database assignment2/data/final/project_a2.duckdb --max-messages 1482
 ```
 
 Then run the publisher in another terminal:
@@ -46,7 +46,7 @@ with C before running a separate process against an open writable database.
   Inspect the error and replay after correcting the cause. Automatic retry and
   MQTT manual acknowledgment are not implemented.
 - In database mode, `--max-messages` counts inserted plus database-duplicate
-  messages so a complete replay of the same 60 events can finish.
+  messages so a complete replay of the same events can finish.
 - Same ID with different stored price/time/station, or conflicting prices for
   the same station and time, produces an error.
 - New event times with equal prices are retained if received; B handles
@@ -61,9 +61,8 @@ with C before running a separate process against an open writable database.
 .venv\Scripts\python.exe -m unittest discover -s assignment2/tests -v
 ```
 
-The integration check uses B's 60 JSONL events, the subscriber callback, and a
-temporary copy of the real A1 database. It checks 60 initial writes, 60
-duplicates after restarting the subscriber, 20 latest prices at 17:00,
+The integration check uses a representative selection of the committed price events, the subscriber callback, and a
+temporary copy of the real A1 database. It checks initial writes, duplicates after restarting the subscriber, latest prices at 01:00,
 conflict detection and manual retry after a failed write.
 It does not establish a live MQTT connection or modify the submitted A2 DB.
 
@@ -103,6 +102,5 @@ Queries for the dashboard: `get_station_session_metrics(path, station_id)`,
 with reading counts) and `get_session_readings(path, session_id)` in event-time
 order.
 
-Each write opens one short DuckDB connection; on the development machine a
-stored event took about 18 ms, well inside the 0.1 s publishing interval.
+The dashboard subscriber and queries share a persistent DuckDB connection protected by a lock. Standalone storage calls can also use a database path. The refresh timer pauses while its callback is running to avoid overlapping refresh requests.
 Checks: `tests/test_session_store.py` and `tests/test_dashboard.py`.

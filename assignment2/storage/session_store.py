@@ -25,6 +25,8 @@ from typing import Any, Mapping
 
 import duckdb
 
+from assignment2.storage.connection import open_database
+
 from assignment2.storage.price_store import (
     _parse_decimal,
     _parse_timestamp,
@@ -176,7 +178,7 @@ def _store(
 ) -> str:
     expected = tuple(item[column] for column in columns)
     column_list = ", ".join(columns)
-    with duckdb.connect(str(Path(database_path))) as connection:
+    with open_database(database_path) as connection:
         connection.execute("BEGIN TRANSACTION")
         try:
             _require_station(connection, item["station_id"])
@@ -265,7 +267,7 @@ def get_station_session_metrics(
 ) -> dict[str, Any]:
     """Current and historical session metrics for one station (zeros if none)."""
 
-    with duckdb.connect(str(Path(database_path)), read_only=True) as connection:
+    with open_database(database_path, read_only=True) as connection:
         row = connection.execute(
             """
             SELECT active_sessions, occupied_connectors, completed_sessions,
@@ -291,7 +293,7 @@ def get_station_sessions(
 ) -> list[dict[str, Any]]:
     """Active sessions (latest start first), then the most recent completed ones."""
 
-    with duckdb.connect(str(Path(database_path)), read_only=True) as connection:
+    with open_database(database_path, read_only=True) as connection:
         rows = connection.execute(
             """
             SELECT s.session_id, s.connector_id, s.status, s.start_ts, s.end_ts,
@@ -338,7 +340,7 @@ def get_session_readings(
 ) -> list[dict[str, Any]]:
     """One session's received meter readings in event-time order."""
 
-    with duckdb.connect(str(Path(database_path)), read_only=True) as connection:
+    with open_database(database_path, read_only=True) as connection:
         rows = connection.execute(
             """
             SELECT event_ts, voltage_v, current_a, power_kw, energy_kwh, soc_pct

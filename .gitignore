@@ -26,3 +26,5 @@ __pycache__/
 
 # Dashboard demo database copies (recreate with assignment2/dashboard/prepare_demo_db.py)
 /assignment2/data/demo/
+
+*.duckdb.wal

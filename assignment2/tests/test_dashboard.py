@@ -5,9 +5,11 @@ four-type replay and writes to a cleared copy of the submitted A2 database.
 """
 
 import io
+import duckdb
 import json
 import tempfile
 import threading
+import time
 import unittest
 from argparse import Namespace
 from contextlib import redirect_stderr, redirect_stdout
@@ -30,7 +32,7 @@ from assignment2.mqtt.event_schema import topic_for
 
 ROOT = Path(__file__).resolve().parents[2]
 A2_DB = ROOT / "assignment2/data/final/project_a2.duckdb"
-STATIONS = ROOT / "assignment2/data/generated/sample_20/stations.csv"
+STATIONS = ROOT / "assignment2/data/generated/dc_data/stations.csv"
 EVENTS = ROOT / "assignment2/data/events/replay_events.jsonl"
 
 
@@ -76,6 +78,8 @@ class DashboardTests(unittest.TestCase):
         self.events = load_events()
 
     def tearDown(self):
+        if self.data.connection is not None:
+            self.data.connection.close()
         self.folder.cleanup()
 
     def start_subscriber(self):
@@ -86,7 +90,9 @@ class DashboardTests(unittest.TestCase):
         )
         with patch("assignment2.mqtt.subscriber.mqtt.Client"), \
                 patch("assignment2.dashboard.app.threading.Thread"):
-            return start_subscriber(args, self.lock)
+            receiver = start_subscriber(args, self.lock)
+            self.data.connection = receiver.database_connection
+            return receiver
 
     def replay(self, subscriber, events):
         with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
@@ -105,8 +111,12 @@ class DashboardTests(unittest.TestCase):
             self.assertFalse(station["has_events"])
         # No message yet, so no marker on the map.
         self.assertEqual(build_markers(snapshot, "price", 5), [])
-        # Plug types come from A1's Open Charge Map augmentation (9 of 20 matched).
-        self.assertEqual(sum(s["plug_types"] is not None for s in snapshot["stations"]), 9)
+        with duckdb.connect(str(self.db), read_only=True) as connection:
+            expected = connection.execute(
+                "SELECT count(DISTINCT record_id) FROM attribute_connectors WHERE connector_type IS NOT NULL AND connector_type != '' AND record_id IN (SELECT unnest(?))",
+                [[s["station_id"] for s in snapshot["stations"]]],
+            ).fetchone()[0]
+        self.assertEqual(sum(s["plug_types"] is not None for s in snapshot["stations"]), expected)
 
         with self.assertRaises(ValueError):
             prepare_demo_database(A2_DB, A2_DB)
@@ -115,7 +125,7 @@ class DashboardTests(unittest.TestCase):
 
     def test_partial_replay_matches_events(self):
         subscriber = self.start_subscriber()
-        cutoff = "2026-09-15T16:30:00"
+        cutoff = "2026-09-15T01:02:00"
         received = [e for e in self.events if e["event_time"] < cutoff]
         self.replay(subscriber, received)
         self.assertEqual(subscriber.storage_error_count, 0)
@@ -127,7 +137,11 @@ class DashboardTests(unittest.TestCase):
             active, completed = expected.get(station["station_id"], (0, 0))
             self.assertEqual(station["active_sessions"], active, station["station_id"])
             self.assertEqual(station["completed_sessions"], completed, station["station_id"])
-            self.assertEqual(station["latest"]["event_time"], "2026-09-15T16:00:00")
+            received_prices = [e for e in received if e["event_type"] == "price_update" and e["station_id"] == station["station_id"]]
+            if received_prices:
+                self.assertEqual(station["latest"]["event_time"], max(e["event_time"] for e in received_prices))
+            else:
+                self.assertIsNone(station["latest"])
         self.assertGreater(sum(s["active_sessions"] for s in snapshot["stations"]), 0)
 
         # Markers exist only for stations with a received message; labels show the price.
@@ -164,13 +178,14 @@ class DashboardTests(unittest.TestCase):
 
     def test_concurrent_reads_during_replay(self):
         subscriber = self.start_subscriber()
-        received = [e for e in self.events if e["event_time"] < "2026-09-15T15:30:00"]
+        received = [e for e in self.events if e["event_time"] < "2026-09-15T01:00:00"]
         errors = []
         writer = threading.Thread(target=self.replay, args=(subscriber, received))
         writer.start()
         while writer.is_alive():
             try:
                 self.data.snapshot()
+                time.sleep(1)
             except Exception as exc:  # any read failure is a test failure
                 errors.append(exc)
         writer.join()

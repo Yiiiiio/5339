@@ -61,6 +61,10 @@ def prepare_demo_database(source: Path, output: Path, *, force: bool = False) ->
     if output.exists() and not force:
         raise FileExistsError(f"{output} already exists; pass --force to replace it")
 
+    if output.exists():
+        with duckdb.connect(str(output)) as previous:
+            previous.execute("CHECKPOINT")
+
     output.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, output)
     initialise_database(output)

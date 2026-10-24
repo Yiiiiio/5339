@@ -3,3 +3,4 @@ duckdb==1.5.5
 dash==4.4.1
 dash-leaflet==1.1.3
 plotly==7.1.0
+amqtt==0.12.1

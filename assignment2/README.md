@@ -1,321 +1,85 @@
-# COMP5339 A2 小组协作指南
+# Assignment 2 EV Charging Data Streaming and Analysis
 
-更新日期：2026 年 10 月 20 日。供小组开发、交接与周四 check-in 使用。
+## Data preparation and generation
 
-本项目在 A1 充电桩数据和 DuckDB 基础上，生成模拟价格与充电会话，通过 MQTT 传输，再保存、分析并展示在动态地图上。A、B、C、D 是分工代称，组内确认后填写实际姓名。
+Run `Data_Preparation_and_Generation.ipynb` from within the repository using Python 3.9 or later. The notebook uses the Python standard library and the supplied, unchanged `generator/generate_dataset.py`. It reads `../data/processed/chargers_clean.csv`, selects all 433 DC records in source order, and preserves A1 `record_id` as `station_id`.
 
-**当前已完成二十条 DC 记录的样例输入准备与数据生成。**
+The simulation covers 15 September 2026 for one day, with seed 5339 and urban/regional session rates of 3.1/2.1 per connector per day. The included AEMO NSW1 cache supports offline reproduction. Run all cells to prepare inputs, generate data, validate relationships and times, and save provenance records. Rerunning overwrites these generated outputs.
 
-**周四前的第一阶段目标：先打通 `price_update`，让收到的价格消息经过数据库后，驱动地图上的最新价格更新。
-## 1. 当前成果和最新要求
+| File | Purpose | Rows |
+|---|---|---:|
+| `data/input/stations.csv` | Seven-field generator input | 433 |
+| `data/input/stations_preparation.csv` | Per-record preparation and review decisions | 433 |
+| `data/input/stations_metadata.json` | Source, classification rules and assumptions | — |
+| `data/generated/dc_data/stations.csv` | Station attributes and base prices | 433 |
+| `data/generated/dc_data/prices_hourly.csv` | Hourly retail and wholesale prices in AUD/kWh | 10,392 |
+| `data/generated/dc_data/sessions.csv` | Charging-session times, energy and cost | 4,027 |
+| `data/generated/dc_data/session_metering.csv` | Meter telemetry and cumulative session energy | 123,025 |
+| `data/generated/dc_data/run_summary.json` | Parameters, checks, counts and SHA-256 hashes | — |
+| `data/generated/dc_data/aemo_cache/` | AEMO monthly wholesale-price source | — |
 
-### 1.1 已完成的样例
+Existing A1 power values are retained. Six missing power values are recovered from original ratings, taking the lower explicitly stated kW value where needed. Missing names use operator and address, with labels limited to 90 characters. Urban/regional categories are documented simulation conventions. Source records are not independently verified physical sites; duplicate-review flags and known coordinate concerns are retained in the preparation records. Plug counts model independent connectors and do not establish simultaneous physical capacity.
 
-从 A1 的 `data/processed/chargers_clean.csv` 筛选 `charger_type_standardized == "DC"`，按原文件顺序取前 20 条，不重新排序，不跳过有复核标记的记录。
+Validation checks hourly coverage, identifier references, connector ranges, session timing, non-overlapping sessions and nondecreasing cumulative meter energy. All 433 IDs also exist in the A1 database. Meter `energy_kwh` is cumulative and must not be summed across readings. Timestamps are preserved without timezone conversion.
 
-| 项目 | 当前结果 |
-|---|---|
-| 输入记录 | 20 条 DC 源记录，站点标识唯一 |
-| 模拟分类 | 11 条 urban、9 条 regional |
-| 模拟接口数 | 96 个，来自 A1 的插头数量 |
-| 生成日期 | 2026 年 9 月 15 日，1 天 |
-| 每小时价格 | 480 条 |
-| 充电会话 | 218 次 |
-| 电表读数 | 6,040 条 |
-| 价格消息候选 | 200 条，按站点过滤连续相同价格，包含各站点初始价格；尚未发布 |
-| 已做检查 | 24 小时 AEMO 电价覆盖、站点和会话关联、会话标识唯一、会话时间顺序 |
+## Project structure
 
-以上是字段和关联检查，不代表对实际站点位置或模拟物理过程进行了独立验证。
+- `generator/`: supplied simulation script and documentation.
+- `mqtt/`: event preparation, JSON schemas, publishing and subscription.
+- `storage/` and `sql/`: DuckDB event storage, queries and schema.
+- `dashboard/`: map, prices, session metrics and charging curves.
+- `tests/`: event, storage and dashboard checks.
 
-### 1.2 最终规模与周四要求
+## Setup and execution
 
-根据老师最新通知：
-
-- 不再要求生成 14 天数据；目标为至少 10,000 条小时价格和约 4,000 次充电会话，3,900 次也可以。
-- 可以使用完整 DC 集合。A1 的 433 条 DC 记录若各生成 24 小时价格，可得到 10,392 条价格；会话数必须运行后核对和调整。
-- 允许只回放部分时间段，例如四小时，但页面应出现可见的动态变化。
-- 需提交生成器输入与输出、准备并实际发布的事件文件，以及订阅端使用的 DuckDB。
-- 周四 check-in 重点是分工、参与和进展，不要求完整 Dashboard。所有成员应按 tutor 安排参与，远程方式需与 tutor 联系。
-
-
-## 2. 已有文件说明
-
-以下路径均相对于 `assignment2/`，链接指向实际文件。
-
-| 文件 | 内容及作用 | 谁使用 |
-|---|---|---|
-| [generator/generate_dataset.py](generator/generate_dataset.py) | 老师原始生成器，未修改；读取站点并生成模拟数据 | A 运行，其他人查阅字段逻辑 |
-| [generator/README.md](generator/README.md) | 老师对参数、模型、输出和局限的说明 | 全组 |
-| [data/input/stations_sample.csv](data/input/stations_sample.csv) | 二十条样例输入，七列格式 | A 生成；B/C/D 核对站点 |
-| [data/input/stations_sample_notes.json](data/input/stations_sample_notes.json) | 输入来源、字段映射、分类规则、逐条复核标记 | 全组，报告引用依据 |
-| [data/generated/sample_20/stations.csv](data/generated/sample_20/stations.csv) | 站点信息及生成器分配的基础价格 `base_price` | C、D；B 核对标识 |
-| [data/generated/sample_20/prices_hourly.csv](data/generated/sample_20/prices_hourly.csv) | 480 条站点小时价格 | B 制作价格事件 |
-| [data/generated/sample_20/sessions.csv](data/generated/sample_20/sessions.csv) | 218 次完整会话及最终汇总 | B 制作开始、结束事件；C 核对字段 |
-| [data/generated/sample_20/session_metering.csv](data/generated/sample_20/session_metering.csv) | 6,040 条会话电表读数 | B 制作 meter 事件；C/D 开发曲线 |
-| [data/generated/sample_20/aemo_cache/PRICE_AND_DEMAND_202609_NSW1.csv](data/generated/sample_20/aemo_cache/PRICE_AND_DEMAND_202609_NSW1.csv) | 生成器下载的 AEMO 原始月度价格缓存 | A 复现与核查来源 |
-| [data/generated/sample_20/run_summary.json](data/generated/sample_20/run_summary.json) | 实际运行命令、输出数量、检查结果 | 全组，当前运行状态依据 |
-
-`stations_sample_notes.json` 中的 `status` 记录输入准备时的状态，早于本次生成。生成已完成的依据是 `run_summary.json`，不能把旧状态误读为当前尚未生成。
-
-### 2.1 输入字段
-
-| 字段 | A1 来源或处理方式 | 注意事项 |
-|---|---|---|
-| `station_id` | `record_id` | 完整保留，不能重新编号或用行号关联 |
-| `name` | 运营商加地址 | 本样例原始名称均为空，合成标签不是官方名称 |
-| `lat`、`lon` | `Latitude`、`Longitude` | 保留原坐标 |
-| `site_type` | 根据源 LGA 制定的样例分类 | urban/regional 为模拟约定，不是官方城乡分类 |
-| `connectors` | `Number_of_plugs` | 假设每个插头是独立模拟接口，未验证真实同时充电能力 |
-| `max_kw` | `power_kw` | 二十条均有明确数值，本次未补填功率 |
-
-### 2.2 主要输出字段
-
-| 输出 | 主要字段 | 后续含义 |
-|---|---|---|
-| 小时价格 | `ts`、`station_id`、`price_per_kwh`、`wholesale_per_kwh` | 零售模拟价和批发价均为每 kWh 价格，不能混用 |
-| 会话 | `session_id`、`station_id`、`connector_id`、`start_ts`、`charge_end_ts`、`end_ts`、`energy_kwh`、`cost_aud` | 一次会话的完整过程与最终结果 |
-| 电表 | `ts`、`session_id`、`station_id`、`connector_id`、`voltage_v`、`current_a`、`power_kw`、`energy_kwh`、`soc_pct` | 可用于实时曲线；`energy_kwh` 是会话累计电量，不能逐条直接相加 |
-
-`base_price` 是模拟定价基础值，不是最新价格。`charge_end_ts` 表示停止充电，`end_ts` 表示之后拔枪、结束占用。该样例最后一个会话到次日 00:25:22 才结束，不能仅按生成日期截断所有结束事件。
-
-### 2.3 复现样例
-
-在仓库根目录运行下面的命令。生成器只使用 Python 标准库；首次运行需要联网获取 AEMO 数据，已有缓存时复用缓存。该命令会覆盖同一输出目录中的生成文件，比较不同参数时应改用新目录。
+Use Python 3.10 or later. From the repository root:
 
 ```bash
-python3 assignment2/generator/generate_dataset.py --stations assignment2/data/input/stations_sample.csv --start 2026-09-15 --days 1 --sessions-per-connector-day 3 2 --seed 5339 --out assignment2/data/generated/sample_20
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r assignment2/requirements.txt
+python assignment2/scripts/run_demo.py
 ```
 
-两个会话参数分别对应 urban 和 regional 的每接口每日生成强度，并非最终次数保证。`run_summary.json` 是本次单独校验保存的记录，不是老师脚本自动输出；重新生成后应重新校验并更新它。
+On Windows, activate with `.venv\Scripts\activate` instead. On macOS, `START_DEMO.command` launches the same program after environment setup. VS Code provides the **Start charging dashboard** task.
 
-## 3. A2 目录建议
+The launcher creates a clean database copy, starts the local MQTT broker and dashboard, waits for the subscription acknowledgement, and opens http://127.0.0.1:8050. Press Enter in the terminal to replay the events. Keep the terminal open; Ctrl+C stops the services. The stored results remain in `data/demo/demo_a2.duckdb`. The source database in `data/final` is not reset by the launcher.
 
-以下目录树中，标注“建议”的部分尚待开发，不代表文件已存在。A1 原有代码和数据保留，不用把它们全部搬进 A2。
+To view the included database without starting MQTT:
 
-```text
-assignment2/
-├── README.md                    当前中文协作指南
-├── generator/                   已有：老师原始生成器和说明
-├── data/
-│   ├── input/                   已有：站点样例输入和说明
-│   ├── generated/sample_20/     已有：生成结果、电价缓存和运行记录
-│   ├── events/                  建议：B 保存实际回放事件及回放说明
-│   └── final/                   建议：C 生成 A2 DuckDB 文件
-├── mqtt/                        建议：B 的事件转换、发布、订阅代码
-├── storage/                     建议：C 的事件写入和查询模块
-├── dashboard/                   建议：D 的页面、地图和图表
-├── sql/                         建议：C 的 A2 DDL
-└── requirements.txt             建议：整合后核对的运行依赖
+```bash
+python assignment2/dashboard/app.py
 ```
 
+## Event preparation
 
-## 4. 分工总表
-
-### 4.1 完整分工与周四初步功能
-
-| 成员 | 完整项目分工 | 周四前优先完成的初步功能 | 周四展示内容 |
-|---|---|---|---|
-| A 数据准备与生成 | 整理 A1 的 DC 输入；处理名称、功率和分类；运行生成器；核对数据质量及最终数量；维护数据说明并汇总 README | 已完成二十条样例输入，生成 480 条价格、218 次会话、6,040 条电表读数并上传 GitHub；接下来帮助组员理解字段，选择有价格变化的演示片段 | 输入 CSV、生成结果、数量检查；说明数据来源、字段对应和模拟假设 |
-| B MQTT 发布与订阅 | 将价格、会话和电表数据转换为四类事件；设计 JSON 与 topic；过滤未变化价格；按时间排序和规定间隔发布；订阅、解析并交给 C；保存实际发布的事件文件 | 先只实现 price_update：读取价格 CSV，保留初始价格并过滤未变化价格，完成发送与接收，间隔至少 0.1 秒 | 价格消息样例、发送和接收日志；展示同一站点收到两次不同价格 |
-| C 数据库与统计 | 扩展 A1 DuckDB；关联站点并存储事件；处理重复消息、会话状态和多接口；提供最新状态、历史指标、充电曲线查询；维护 DDL 和设计说明 | 先处理价格：保存收到的价格事件，关联 A1 站点，保留价格历史，提供最新价格查询，避免重复存储或旧消息覆盖新值 | 已存价格事件及最新价格查询；证明消息到达后数据库结果更新 |
-| D Dashboard 与可视化 | 制作交互地图和详情弹窗；接入 C 的查询；动态展示价格或占用状态；显示当前／历史指标和实时充电进度曲线；准备截图与运行说明 | 先展示价格：显示二十个站点、基础详情和最新价格，定时查询并刷新；尚未收到价格时显示“暂无价格” | 地图与弹窗；如已接通，展示新消息到达后对应站点价格自动更新 |
-
-**周四共同目标：价格 CSV → B 通过 MQTT 发收消息 → C 存储并查询 → D 更新地图价格。**
-
-这是第一阶段开发目标，不是老师要求周四必须全部完成的标准。尚未连接的部分可以展示独立成果，并说明实际进度。
-
-周四暂缓充电开始／结束、占用状态、电表事件、实时充电曲线、完整历史统计、全量数据和界面美化；这些仍需在最终项目中完成。已有会话与电表文件保留，供后续使用。
-
-每人编写自己模块的报告、运行说明、检查结果和 AI 使用记录；全组在周三尝试整合，并在展示电脑上提前排练。
-
-## 5. 每个人具体要做什么
-
-本节保留最终职责，避免第一阶段完成后漏掉其他要求。周四前优先执行每位成员开头的“先做”内容，其余功能分阶段补齐。
-
-### 5.1 A 数据生成
-
-**先做：**现有样例已生成并共享。帮助组员读取文件，说明价格字段、站点关联和时间约定，与 B 选出至少包含同一站点两次不同价格的回放片段。当前不必重新生成全量数据。
-
-1. 将当前二十条输入、生成结果和说明交给组员，明确只用同一份样例。
-2. 解释站点标识、字段单位、合成名称和模拟分类，保留数据问题记录。
-3. 支持 B/C/D 核对数据，避免未经通知更换字段或站点标识。
-4. 后续准备完整 DC 输入，按老师允许的规则处理缺失或范围功率，并记录依据。
-5. 运行最终规模数据，核对至少 10,000 条小时价格、约 4,000 次会话，不能只凭参数推算会话数。
-6. 编写数据准备与生成章节，汇总组员的 README 内容。
-
-样例输入和输出随本次提交共享；全量数据准备仍需执行。输入和输出可复现、数量可核对、假设可解释，是 A 的验收标准。
-
-### 5.2 B MQTT 发布与订阅
-
-**先做：**只读取 `prices_hourly.csv` 并实现 `price_update` 的转换、发送和接收。先与 C 确认价格消息字段、事件标识和交接入口；保存实际回放的 JSON。先不要把会话和电表消息加入现场回放。
-
-1. 读取 A 的三个时间序列文件。
-2. 将价格行转成 `price_update`，会话开始转成 `session_start`，结束转成 `session_end`，读数转成 `meter`。
-3. 按站点保留初始价格并过滤连续未变化价格，将四类事件合并后按事件时间排序。
-4. 与 C 约定统一消息字段、类型、单位、事件标识和重复处理方式；设计一致的 MQTT topic。
-5. 保存实际准备发布的事件 JSON 和回放窗口说明。老师预期约 1–3 个 JSON 文件，组织方式由实现决定。
-6. 发布时满足至少 0.1 秒间隔，记录发送成功、失败和重试情况。
-7. 订阅并解码消息，检查必要字段，将收到的事件交给 C 的入口。
-8. 验证四类事件可收发，问题不会被静默忽略。
-
-不能把会话最终耗电量、最终费用作为开始时已知信息发布。同一时刻的开始、读数、结束事件应有一致的处理次序。
-
-选择部分时间段回放时，可能有会话在窗口之前开始、在窗口之后结束。B 和 C 必须约定如何初始化状态或包含必要边界事件，也要提供窗口开始时有效的价格；不能把缺少开始消息的会话误判为空闲。
-
-### 5.3 C 数据库与统计
-
-**先做：**实现价格事件写入、A1 标识关联及最新价格查询，并将接收的价格历史保留下来。按事件时间判断最新值，不能让较旧或重复消息覆盖正确的新价格。先不实现活动会话、占用率或电表曲线查询。
-
-1. 在 A1 数据库副本上扩展，保留原始数据库。
-2. 使用 `station_id` 与 A1 的 `record_id` 关联，不按名称或坐标模糊匹配。
-3. 设计足以支持当前状态、历史统计和曲线的数据结构，并提供 DDL。
-4. 提供事件写入入口，由 B 调用；明确输入错误和重复事件的处理结果。
-5. 根据开始、读数和结束事件更新状态，处理同一站点多个接口、多次会话。
-6. 提供站点详情、最新价格、活动会话、历史指标、按会话排序的读数查询。
-7. 验证重复事件不会重复计数，重放时如何清空或区分批次要有说明。
-8. 根据实际 Dashboard 查询考虑存储和查询优化，并在报告中解释。
-
-建议保存收到的回放事件，再计算状态和统计，便于核对。最新通知允许其他存储设计，但必须保留足够信息支撑所选当前和历史指标，不能只存最新值却声称支持历史分析。
-
-累计电量不能对所有 meter 行直接求和。若计算占用率，要定义接口数量、观察时间段和边界会话处理，避免分母不明确。
-
-### 5.4 D Dashboard
-
-**先做：**显示样例站点、基础弹窗和来自 C 的最新价格，完成自动刷新。不要把 `base_price` 或 CSV 中尚未回放的未来价格当成收到的最新价格。先不开发占用状态、充电进度曲线、筛选或复杂美化。
-
-1. 使用 A1 坐标和样例站点制作地图，不使用老师演示站点代替。
-2. 点击标记展示名称、地址、运营商、插头信息和最新价格；缺失字段明确表示缺失。
-3. 接入 C 的查询，自动更新至少一项动态属性，如价格或占用状态。
-4. 在详情弹窗中落实一个当前指标和一个历史指标，例如活动会话数和已完成会话数。
-5. 根据 meter 数据显示当前充电进度曲线，标明会话、时间和单位。
-6. 多个活动会话时提供选择，或明确标注默认显示哪一次。
-7. 处理尚无价格、无活动会话、无历史数据等页面状态。
-8. 与 B/C 一起验证实际事件到达后页面发生变化，保存运行截图。
-
-开发阶段可用 CSV 做原型；最终动态展示通过 C 的查询读取实际处理结果，不能从完整会话 CSV 提前读取未来状态。筛选与美化放在核心功能之后。
-
-技术建议为 Dash、Dash Leaflet 和 Plotly，尚未作为全组已确认选型。可用其他 Python 框架，但需先验证弹窗、动态属性和曲线能满足要求。
-
-### 5.5 第一阶段之后的顺序
-
-1. 先核对价格收发、入库和地图更新是否真实连通。
-2. 有余力时增加历史价格折线图，使用 C 已保存的价格事件；这不能替代最终要求的充电进度曲线。
-3. 接入 `session_start`、`session_end`，实现会话状态和相应历史统计。
-4. 接入 `meter`，实现当前充电会话的实时进度曲线。
-5. 切换完整数据规模，验证性能、边界情况和提交材料。
-
-程序应按实际记录数处理，不写死 20、样例站点编号或输入路径。样例和完整版本分目录存放，通过配置切换；最终版本使用独立 A2 数据库，避免与旧演示数据混合。
-
-## 6. 开发前确认的交接约定
-
-| 事项 | 当前已有依据 | 下一步责任 |
-|---|---|---|
-| 站点标识 | `station_id` 等于 A1 `record_id` | 全组完整保留 |
-| 会话标识 | 生成器已有 `session_id` 和 `connector_id` | B/C/D 不自行重编号 |
-| 字段单位 | 字段名包含 kW、kWh、V、A、百分比；费用为 AUD | B 写入接口说明，C/D 一致使用 |
-| 时间 | 生成器输出无时区标记的时间字符串 | A/B/C 核对 AEMO 时间口径，确定统一解释，禁止擅自按本机时区转换 |
-| MQTT 消息 | 第一阶段只实现价格消息 | B 先确定价格消息格式，C/D 确认能使用；其他事件后续扩展 |
-| 重复消息 | 尚未确定 | B/C 约定稳定事件标识和幂等处理 |
-| 历史指标 | 尚未最终选择 | C/D 先选一个可正确实现、可解释的指标 |
-| 回放窗口 | 第一阶段选择含价格变化的短片段 | A/B 选择片段，C/D 确认初始化；后续加入会话时再处理跨窗口会话 |
-| 数据库访问 | 尚未实现 | C 统一管理连接与写入方式 |
-| 展示电脑与启动入口 | 尚未确定 | 全组周三前确定并排练 |
-
-不需要四个人逐字段开会。A 先交数据格式，B 提出消息格式，C 提出查询格式，其他成员确认能接入即可。开始使用后，变更要通知上下游。
-
-## 7. 最终如何整合
-
-### 7.1 数据流程
-
-```text
-A1 静态站点和属性 ────────────────────────┐
-                                        ↓
-A 的生成 CSV → B 的事件转换 → MQTT Broker → B 的订阅模块
-                                              ↓
-                                      C 的存储和查询
-                                              ↓
-                                      D 的浏览器页面
+```bash
+python assignment2/mqtt/prepare_price_events.py
+python assignment2/mqtt/prepare_replay_events.py
 ```
 
-MQTT 是通信协议，Broker 是消息中转服务，Mosquitto 是一种可选 Broker 软件。GitHub 保存代码和文件；Dashboard 是运行应用后打开的页面，两者不能互相替代。
+Both commands read `data/generated/dc_data`. The replay interval is 00:55–01:05 on 15 September 2026. Initial prices and earlier start/meter events for ongoing sessions are included with their original timestamps. This provides visible price changes and session activity while keeping replay duration manageable.
 
-### 7.2 推荐运行组织
+| Event type | Count |
+|---|---:|
+| `price_update` | 866 |
+| `session_start` | 25 |
+| `meter` | 585 |
+| `session_end` | 6 |
+| Total | 1,482 |
 
-发布程序单独运行。订阅、存储、查询和 Dashboard 可以由一个整合应用协调：订阅回调把事件放入队列，由 C 管理的存储逻辑写入，再供页面查询。连接和线程访问规则由 C 实现并验证，不要让各模块随意创建写连接。
+Messages use JSON payloads and MQTT QoS 1 with at least 0.1 seconds between publications. Preparing files does not send messages. `data/events/replay_events.jsonl` contains all four event types; `price_events.jsonl` is its price-only subset. Use a clean replay database when changing generation settings or the replay window.
 
-不要让多个独立程序同时写同一个 DuckDB 文件。若选择不同进程架构，需明确谁拥有数据库，以及其他模块通过什么接口查询。
+## Storage and visualization
 
-建议启动顺序：准备数据库和配置 → 启动 Broker → 启动订阅与页面应用并确认连接 → 启动发布程序。具体命令由各负责人实现后补入运行说明。
+The subscriber validates each event and writes it to DuckDB, preserving the A1 `charger_records` identifiers. Prices, session events and meter readings are stored with duplicate/conflict checks. The dashboard queries received data for current prices, occupied connectors, completed sessions, historical prices and charging curves. Map markers appear after their first event is received.
 
-### 7.3 分三次连接
+See [dashboard instructions](dashboard/README.md), [storage instructions](storage/README.md) and [event documentation](data/events/replay_notes.md).
 
-| 阶段 | 参与者 | 验收标准 |
-|---|---|---|
-| A → B | A、B | 先从价格 CSV 生成、发送并接收价格更新；后续扩展其他三类事件 |
-| B → C | B、C | 先保存价格事件并正确关联站点，重复接收不重复计数；后续加入会话和读数 |
-| C → D | C、D | 先让最新价格查询驱动地图更新；后续加入状态、统计和曲线 |
-| 第一阶段完整流程 | 全组 | 同一站点的初始价格和后续不同价格经过发送、接收、存储、展示，可逐条核对 |
-| 最终完整流程 | 全组 | 在价格流程基础上跑通完整充电会话，并满足最终规模和其他要求 |
+## Verification
 
-先小范围跑通，再增加站点和事件。不要等每个人“全部完成”才连接。
+```bash
+python -m unittest discover -s assignment2/tests -v
+```
 
-### 7.4 周四前的整合安排
-
-| 时间 | 目标 |
-|---|---|
-| 周二 | 全组读取样例，约定价格消息和查询格式；B 收发价格，C 建立价格存储，D 搭地图 |
-| 周三上午 | B 与 C 连接实际收到的价格消息；D 用约定的查询结果开发弹窗 |
-| 周三下午 | C 与 D 接通，测试同一站点至少一次价格变化，核对源数据、收到事件、数据库和页面 |
-| 周三晚上 | 在展示电脑排练启动顺序，确认重放清理策略，准备截图或短录屏 |
-| 周四 | 展示实际进展；若未完全连通，明确指出已完成部分与尚未连接的接口 |
-
-短片段回放仍要按事件时间排序，不能为了效果任意改写价格。要提供片段起点的有效初始价格，并注明其时间和用途；未初始化的站点显示“暂无价格”。不需要现场播放完整一天。
-
-## 8. 周四展示和每个人说什么
-
-### 8.1 展示电脑准备
-
-建议准备三个窗口：GitHub 或协作文档用于讲分工，终端或 Notebook 用于展示数据与消息，浏览器用于展示 Dashboard。Dashboard 可以本地运行，不要求先部署公网网站。
-
-周四优先准备样例成果、分工、后续计划和价格流程进展。会话状态、实时充电曲线、完整历史统计、全量数据和界面美化暂缓，仍属于后续需要完成的内容。
-
-建议现场按以下顺序展示：
-
-1. 打开地图，选中一个准备演示的站点。
-2. 启动已选定的价格片段回放，先显示该站点初始价格。
-3. 展示订阅端收到该站点的新价格。
-4. 展示数据库事件增加，最新价格查询得到新值。
-5. 展示页面自动刷新后的价格，与消息和数据库结果一致。
-
-这是理想演示流程，不是当前完成状态。若未连通，分别展示数据、消息收发、数据库查询和地图原型，并明确未连接的部分。
-
-### 8.2 每人约一分钟的提纲
-
-**A 数据生成：目前已有实际结果，可按以下事实介绍。**
-
-“我负责输入准备和模拟数据生成。我们从 A1 清洗数据中按原始顺序选择前二十条 DC 记录，保留原标识，并转换成生成器要求的七列。运行老师脚本后，得到一天的 480 条小时价格、218 次会话和 6,040 条电表读数。我们核对了站点和会话关联、时间顺序及电价覆盖。名称和 urban/regional 分类有记录的模拟假设，部分坐标仍需复核。接下来扩大到最终规模，并支持组员整合。”
-
-展示：GitHub 已共享的输入、`run_summary.json` 和价格 CSV 的少量行。说明会话和电表数据已经生成，但周四第一阶段只接入价格，其他事件后续接入。
-
-**B MQTT：根据实际状态选择表述，不能把计划说成结果。**
-
-- 我最终负责四类事件的发布与订阅，目前先实现价格更新消息。
-- 展示实际已完成的价格 JSON、topic 或收发日志，解释按站点过滤未变化价格、时间排序和发送间隔。
-- 明确目前已经接通哪一步，下一步如何把接收事件交给 C。
-- 若尚未收发成功，展示消息转换成果和遇到的问题，不声称已发布成功。
-
-**C 数据库：根据实际完成内容介绍。**
-
-- 我负责扩展 A1 数据库，用 `station_id` 对应原 `record_id`。
-- 展示已实现的价格入库和最新价格查询，说明收到的新价格如何关联正确站点。
-- 说明价格历史保留和重复消息处理；会话状态及统计是后续工作。
-- 若只有设计而未入库，明确说目前已完成设计、正在实现存储。
-
-**D Dashboard：区分原型与动态整合结果。**
-
-- 我最终负责地图、详情弹窗、指标和充电曲线，目前先完成地图、基础详情和最新价格展示。
-- 展示可运行页面，点击标记说明数据来源。
-- 若接入 C，演示一次实际更新；若使用样例，明确说目前是样例原型。
-- 说明最新价格是否已经自动刷新；会话状态、历史指标和充电进度曲线后续加入。
-
-全组最后补充：哪些模块已连接、谁负责下一次交付，以及需要 tutor 反馈的问题。建议确认模拟分类、回放初始状态和选定指标是否合适。
+The tests check event preparation against committed replay files, message schemas, duplicate/conflict handling, session state, price history, concurrent access and dashboard construction. The data generation notebook separately validates the generated datasets.

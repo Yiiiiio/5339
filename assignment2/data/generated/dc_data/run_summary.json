@@ -1,0 +1,45 @@
+{
+  "start_date": "2026-09-15",
+  "days": 1,
+  "seed": 5339,
+  "sessions_per_connector_day": [
+    3.1,
+    2.1
+  ],
+  "source_sha256": "99c83df26c9f595dc42987832cb92b2e6a3ca98c8084f678de511c743d2060af",
+  "generator_sha256": "5db5579ff135b8d137dde2b44d630747e8be2351b3560614a6444f88c6a39167",
+  "station_count": 433,
+  "connectors": 1658,
+  "site_categories": {
+    "urban": 245,
+    "regional": 188
+  },
+  "counts": {
+    "stations": 433,
+    "prices_hourly": 10392,
+    "sessions": 4027,
+    "session_metering": 123025
+  },
+  "checks": {
+    "all_dc_records_preserved": true,
+    "hourly_price_coverage": true,
+    "at_least_10000_prices": true,
+    "session_count_project_target": true,
+    "unique_session_ids": true,
+    "valid_station_references": true,
+    "valid_prices": true,
+    "session_times_and_connectors": true,
+    "no_overlapping_sessions": true,
+    "meter_references_times_and_energy": true
+  },
+  "last_session_end": "2026-09-16T00:48:04",
+  "input_sha256": "e1eebe24cde6666d7a13652fabe6fb6b955c0076756ddddaf1e1e7208d964c2e",
+  "output_sha256": {
+    "stations": "0c36f4c7c59c3fc6c0381f788a914afe55874762e30e4313dfc50554b34118d5",
+    "prices_hourly": "0c003aaf8c73c3d5dcf3fa13a6af39494e6358f419b94ffbff5a8907ce6ba837",
+    "sessions": "976b0df7a26131adc55f0a7e1a86a0e97ce99a860aef842feaf5de4b59a69e8c",
+    "session_metering": "f8d7a41f626a7c8e00678881cdbe8612170a0c956e191c619f3698cb5d629cd8"
+  },
+  "aemo_cache_sha256": "85af3e1f68823c3eef87fcc98e5fa605c609b568ec64d6ef36b96722f8db8cd0",
+  "scope": "Synthetic station, hourly price, charging session, and meter datasets for Assignment 2."
+}

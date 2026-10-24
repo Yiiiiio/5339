@@ -1,0 +1,77 @@
+{
+  "source": "data/processed/chargers_clean.csv",
+  "source_sha256": "99c83df26c9f595dc42987832cb92b2e6a3ca98c8084f678de511c743d2060af",
+  "selection": "All DC records in source order; no deduplication or renumbering",
+  "urban_lga_allowlist": [
+    "Bayside Council",
+    "Blacktown City Council",
+    "Blue Mountains City Council",
+    "Burwood Council",
+    "Camden Council",
+    "Campbelltown City Council",
+    "Canada Bay Council, City of",
+    "Canterbury Bankstown Council",
+    "City Of Canada Bay Council",
+    "Cumberland Council",
+    "Fairfield City Council",
+    "Georges River Council",
+    "Hawkesbury City Council",
+    "Hornsby, The Council of the Shire of",
+    "Hunters Hill, The Council of the Municipality of",
+    "Inner West Council",
+    "Ku-ring-gai Council",
+    "Lane Cove Municipal Council",
+    "Liverpool City Council",
+    "Mosman Municipal Council",
+    "North Sydney Council",
+    "Northern Beaches Council",
+    "Parramatta, Council of the City of",
+    "Penrith City Council",
+    "Randwick City Council",
+    "Ryde, Council of the City of",
+    "Strathfield",
+    "Strathfield Municipal Council",
+    "Sutherland Shire Council",
+    "Sydney, Council of the City of",
+    "The Hills Shire Council",
+    "Waverley Council",
+    "Willoughby City Council",
+    "Wollondilly Shire Council",
+    "Woollahra Municipal Council"
+  ],
+  "missing_lga_rules": {
+    "ev_f4541d35e73670741678834a9099d01eafad51a684e29a77a94091c07ad8bec2": [
+      "urban",
+      "Source address: Kingsford"
+    ],
+    "ev_1000c978d32395ddf6dbe8e4ed609f5700762989566e7e1c5ebcf182f04a4399": [
+      "urban",
+      "Source address: Balgowlah"
+    ],
+    "ev_6c9d2b1726480ec136956e375e2a0b6a970532d7b6ad719f050946266568b917": [
+      "regional",
+      "Source address: Wollongong; regional simulation model"
+    ],
+    "ev_9eeb85b4fe2cf21b3fee9c759e75a01177f8019fcb29d3068169ecdde1a18a2d": [
+      "urban",
+      "Source address: Campbelltown"
+    ],
+    "ev_54c3831ece16cc05d25aba9a38dd71dab4176e7e10ba51add6eca709c448bd0d": [
+      "urban",
+      "Source address: Mount Annan"
+    ],
+    "ev_8e508009b751691ba8fa15d29dbcbf4a0a0dc4e8d0992f0e3c0d9d5525b7b21c": [
+      "regional",
+      "Source address: Figtree; regional simulation model"
+    ]
+  },
+  "assumptions": [
+    "Source records are simulation stations, not verified distinct physical sites.",
+    "Existing A1 power values are retained; missing values use the minimum explicit original kW rating.",
+    "Site categories are simulation conventions, not official geography.",
+    "Plug counts are simulated independent connectors, not verified simultaneous physical capacity.",
+    "Coordinates are preserved; known issues and duplicate-review flags remain in the audit.",
+    "Display labels are limited to 90 characters; complete labels and addresses remain in the audit.",
+    "No external geospatial verification was performed for the dataset."
+  ]
+}

@@ -17,6 +17,8 @@ from typing import Any
 
 import duckdb
 
+from assignment2.storage.connection import open_database
+
 from assignment2.storage.price_store import get_price_history
 from assignment2.storage.session_store import get_session_readings, get_station_sessions
 
@@ -101,9 +103,10 @@ class DashboardData:
         self.stations = stations
         self.station_ids = [station.station_id for station in stations]
         self.lock = lock or threading.Lock()
+        self.connection = None
 
     def _connect(self) -> duckdb.DuckDBPyConnection:
-        return duckdb.connect(str(self.database_path), read_only=True)
+        return open_database(self.connection if self.connection is not None else self.database_path, read_only=True)
 
     def snapshot(self, recent_limit: int = 10) -> dict[str, Any]:
         """Return station details, latest prices and the most recent events."""
@@ -283,16 +286,16 @@ class DashboardData:
         """Return the received price history for one station."""
 
         with self.lock:
-            return get_price_history(self.database_path, station_id)
+            return get_price_history(self.connection if self.connection is not None else self.database_path, station_id)
 
     def station_sessions(self, station_id: str) -> list[dict[str, Any]]:
         """Active sessions (latest start first), then recent completed ones."""
 
         with self.lock:
-            return get_station_sessions(self.database_path, station_id)
+            return get_station_sessions(self.connection if self.connection is not None else self.database_path, station_id)
 
     def session_readings(self, session_id: str) -> list[dict[str, Any]]:
         """Received meter readings of one session in event-time order."""
 
         with self.lock:
-            return get_session_readings(self.database_path, session_id)
+            return get_session_readings(self.connection if self.connection is not None else self.database_path, session_id)

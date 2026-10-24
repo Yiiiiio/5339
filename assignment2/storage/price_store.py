@@ -14,6 +14,8 @@ from typing import Any, Mapping
 
 import duckdb
 
+from assignment2.storage.connection import open_database
+
 
 DEFAULT_SCHEMA_PATH = Path(__file__).resolve().parents[1] / "sql" / "a2_schema.sql"
 REQUIRED_FIELDS = {
@@ -33,7 +35,7 @@ def initialise_database(
     """Create the A2 price table and latest-price view if they do not exist."""
 
     schema = Path(schema_path).read_text(encoding="utf-8")
-    with duckdb.connect(str(Path(database_path))) as connection:
+    with open_database(database_path) as connection:
         connection.execute(schema)
 
 
@@ -107,7 +109,7 @@ def store_price_event(database_path: str | Path, event: Mapping[str, Any]) -> st
     """
 
     item = _normalise_event(event)
-    with duckdb.connect(str(Path(database_path))) as connection:
+    with open_database(database_path) as connection:
         connection.execute("BEGIN TRANSACTION")
         try:
             station_exists = connection.execute(
@@ -200,7 +202,7 @@ def get_latest_price(
 ) -> dict[str, Any] | None:
     """Return the latest received price for one station, or ``None``."""
 
-    with duckdb.connect(str(Path(database_path)), read_only=True) as connection:
+    with open_database(database_path, read_only=True) as connection:
         row = connection.execute(
             """
             SELECT event_id, station_id, event_ts, price_per_kwh,
@@ -218,7 +220,7 @@ def get_price_history(
 ) -> list[dict[str, Any]]:
     """Return one station's complete price history in event-time order."""
 
-    with duckdb.connect(str(Path(database_path)), read_only=True) as connection:
+    with open_database(database_path, read_only=True) as connection:
         rows = connection.execute(
             """
             SELECT event_id, station_id, event_ts, price_per_kwh,

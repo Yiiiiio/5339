@@ -52,7 +52,7 @@ METER_COLUMNS = {
 
 def parse_arguments() -> argparse.Namespace:
     assignment_dir = Path(__file__).resolve().parents[1]
-    generated = assignment_dir / "data/generated/sample_20"
+    generated = assignment_dir / "data/generated/dc_data"
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--prices", type=Path, default=generated / "prices_hourly.csv")
     parser.add_argument("--sessions", type=Path, default=generated / "sessions.csv")
@@ -63,8 +63,8 @@ def parse_arguments() -> argparse.Namespace:
         default=assignment_dir / "data/events/replay_events.jsonl",
         help="Output JSONL path.",
     )
-    parser.add_argument("--start", default="2026-09-15T15:00:00", help="Inclusive window start.")
-    parser.add_argument("--end", default="2026-09-15T19:00:00", help="Exclusive window end.")
+    parser.add_argument("--start", default="2026-09-15T00:55:00", help="Inclusive window start.")
+    parser.add_argument("--end", default="2026-09-15T01:05:00", help="Exclusive window end.")
     return parser.parse_args()
 
 

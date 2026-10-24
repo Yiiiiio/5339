@@ -16,8 +16,8 @@ from assignment2.storage.price_store import (
 
 
 ROOT = Path(__file__).resolve().parents[2]
-STATIONS_CSV = ROOT / "assignment2/data/generated/sample_20/stations.csv"
-PRICES_CSV = ROOT / "assignment2/data/generated/sample_20/prices_hourly.csv"
+STATIONS_CSV = ROOT / "assignment2/data/generated/dc_data/stations.csv"
+PRICES_CSV = ROOT / "assignment2/data/generated/dc_data/prices_hourly.csv"
 
 
 class PriceStoreTests(unittest.TestCase):

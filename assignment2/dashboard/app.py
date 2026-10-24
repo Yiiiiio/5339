@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import sys
 import threading
+import signal
 from argparse import Namespace
 from pathlib import Path
 from typing import Any
@@ -30,7 +31,7 @@ from assignment2.dashboard.queries import DashboardData, load_simulated_stations
 
 A2_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATABASE = A2_ROOT / "data/final/project_a2.duckdb"
-DEFAULT_STATIONS = A2_ROOT / "data/generated/sample_20/stations.csv"
+DEFAULT_STATIONS = A2_ROOT / "data/generated/dc_data/stations.csv"
 
 NO_PRICE_TEXT = "No price received yet"
 
@@ -158,14 +159,16 @@ def start_subscriber(args: argparse.Namespace, lock: threading.Lock) -> Any:
     with lock:
         subscriber = PriceSubscriber(subscriber_args)
 
+    subscriber.database_connection = duckdb.connect(str(args.database))
     store_event = subscriber.store_event
 
     def locked_store_event(database_path: Path, event: dict[str, Any]) -> str:
         with lock:
-            return store_event(database_path, event)
+            return store_event(subscriber.database_connection, event)
 
     subscriber.store_event = locked_store_event
-    threading.Thread(target=subscriber.run, name="event-subscriber", daemon=True).start()
+    subscriber.thread = threading.Thread(target=subscriber.run, name="event-subscriber", daemon=True)
+    subscriber.thread.start()
     return subscriber
 
 
@@ -810,6 +813,7 @@ def create_app(
         Output("snapshot", "data"),
         Output("status", "children"),
         Input("tick", "n_intervals"),
+        running=[(Output("tick", "disabled"), True, False)],
     )
     def refresh(_: int | None) -> Any:
         try:
@@ -1038,6 +1042,7 @@ def main() -> int:
         stations = load_simulated_stations(args.stations)
         subscriber = start_subscriber(args, lock) if args.subscribe else None
         data = DashboardData(args.database, stations, lock)
+        data.connection = getattr(subscriber, "database_connection", None)
         app = create_app(
             data,
             refresh_seconds=args.refresh_seconds,
@@ -1049,7 +1054,22 @@ def main() -> int:
         return 1
     print(f"Dashboard at http://{args.host}:{args.port}/ (database {data.database_path})", flush=True)
     # debug=False: the reloader would start a second process and subscriber.
-    app.run(host=args.host, port=args.port, debug=False)
+    def stop_application(signum, frame):
+        raise KeyboardInterrupt
+
+    signal.signal(signal.SIGTERM, stop_application)
+    try:
+        app.run(host=args.host, port=args.port, debug=False)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        if subscriber is not None:
+            subscriber.stop_event.set()
+            subscriber.thread.join(timeout=10)
+        if data.connection is not None:
+            with lock:
+                data.connection.execute("CHECKPOINT")
+                data.connection.close()
     return 0
 
 
