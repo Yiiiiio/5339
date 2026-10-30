@@ -8,7 +8,6 @@ This project uses Assignment 1 charger data to generate synthetic hourly prices,
 
 ```text
 README.md
-START_DASHBOARD.command
 Data_Preparation_and_Generation.ipynb
 requirements.txt
 generator/
@@ -71,8 +70,6 @@ python scripts/run_dashboard.py
 ```
 
 The launcher creates a fresh runtime database from the submitted A2 database, clears its event tables, starts the broker on `127.0.0.1:1883` and opens the dashboard at `http://127.0.0.1:8050`. Once the subscription is ready, press Enter in the terminal to publish the events. Keep the terminal open; press Ctrl+C to stop the services. Ports 1883 and 8050 must be available.
-
-On macOS, `START_DASHBOARD.command` starts the same application after environment setup. VS Code also provides the **Start charging dashboard** task.
 
 Markers appear as events are received. Click a marker to see station details, latest prices, occupancy and an active charging curve. The side panel shows session selection, charging curves, price history and completed-session metrics.
 
