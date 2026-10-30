@@ -23,7 +23,7 @@ def wait_for(check, process, name):
     deadline = time.monotonic() + 45
     while time.monotonic() < deadline:
         if process.poll() is not None:
-            raise RuntimeError(f'{name} stopped. Check assignment2/data/demo logs.')
+            raise RuntimeError(f'{name} stopped. Check assignment2/data/runtime logs.')
         if check():
             return
         time.sleep(0.2)
@@ -40,9 +40,9 @@ def main():
         parser.error('--interval must be at least 0.1')
     for port in (1883, 8050):
         if port_open(port):
-            raise RuntimeError(f'Port {port} is in use. Stop the previous demo before restarting.')
-    subprocess.run([PYTHON, 'assignment2/dashboard/prepare_demo_db.py', '--force'], cwd=ROOT, check=True)
-    logdir = ROOT / 'assignment2/data/demo'
+            raise RuntimeError(f'Port {port} is in use. Stop the running application before restarting.')
+    subprocess.run([PYTHON, 'assignment2/dashboard/prepare_replay_db.py', '--force'], cwd=ROOT, check=True)
+    logdir = ROOT / 'assignment2/data/runtime'
     received_path = logdir / 'received_events.jsonl'
     received_path.write_text('')
     expected_events = [json.loads(line) for line in (ROOT / 'assignment2/data/events/replay_events.jsonl').read_text().splitlines() if line.strip()]
@@ -59,7 +59,7 @@ def main():
 
         broker = start('assignment2/scripts/broker.py', 'broker.log')
         wait_for(lambda: 'MQTT broker ready' in (logdir / 'broker.log').read_text(), broker, 'MQTT broker')
-        dashboard = start('assignment2/scripts/dashboard_entry.py', 'dashboard.log', '--database', 'assignment2/data/demo/demo_a2.duckdb', '--subscribe', '--mqtt-host', '127.0.0.1', '--received-log', str(received_path))
+        dashboard = start('assignment2/scripts/dashboard_entry.py', 'dashboard.log', '--database', 'assignment2/data/runtime/replay.duckdb', '--subscribe', '--mqtt-host', '127.0.0.1', '--received-log', str(received_path))
 
         def ready():
             if 'SUBSCRIBED' not in (logdir / 'dashboard.log').read_text():
@@ -99,9 +99,9 @@ def main():
         print('\nPublishing finished. Keep this terminal open to view the dashboard.\nPress Ctrl+C to stop. Run this command again for a fresh replay.', flush=True)
         while dashboard.poll() is None and broker.poll() is None:
             time.sleep(1)
-        raise RuntimeError('A demo service stopped. Check the logs.')
+        raise RuntimeError('An application service stopped. Check the logs.')
     except (KeyboardInterrupt, EOFError):
-        print('\nStopping demo...', flush=True)
+        print('\nStopping application...', flush=True)
     finally:
         for process in reversed(processes):
             if process.poll() is None:

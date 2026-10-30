@@ -52,7 +52,7 @@ class PriceStoreTests(unittest.TestCase):
             "wholesale_per_kwh": row["wholesale_per_kwh"],
         }
 
-    def test_real_sample_insert_duplicate_history_and_latest(self) -> None:
+    def test_price_insert_duplicate_history_and_latest(self) -> None:
         with PRICES_CSV.open(encoding="utf-8-sig", newline="") as handle:
             rows = list(csv.DictReader(handle))
 

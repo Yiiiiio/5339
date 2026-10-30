@@ -1,4 +1,4 @@
--- COMP5339 Assignment 2 - Role C database schema (price stage)
+-- COMP5339 Assignment 2 - Event storage schema
 -- Run this file against a copy of the A1 DuckDB database.
 -- The existing charger_records table is kept as the source of station details.
 
@@ -33,7 +33,7 @@ QUALIFY ROW_NUMBER() OVER (
     ORDER BY event_ts DESC, received_at DESC, event_id DESC
 ) = 1;
 
--- Session stage: session_start / session_end and meter events.
+-- Session start/end events and meter readings.
 -- Received events are stored as history; session state and station metrics
 -- are views over that history, so a duplicate event can never be counted
 -- twice and an end received before its start still yields one session.
@@ -80,9 +80,6 @@ CREATE TABLE IF NOT EXISTS meter_readings (
     UNIQUE (session_id, event_ts)
 );
 
--- No secondary index on session_id: DuckDB failed to delete rows from that
--- non-unique index when a demo copy was cleared. Drop it from older copies.
-DROP INDEX IF EXISTS meter_readings_session_idx;
 
 -- One row per session seen in session_events. 'active' means a start has been
 -- received and no end yet: the connector is occupied (charging, or finished

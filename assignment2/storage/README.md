@@ -1,106 +1,57 @@
-# Price storage: B / C handoff
+# Event Storage
 
-The message input and Python query output use `event_time`. The source CSV
-still uses `ts`; B's preparation script converts it to `event_time`.
-The existing database column remains `event_ts`; C maps it internally, so
-the A2 database does not need to be rebuilt for this interface change.
+The subscriber stores validated MQTT events in DuckDB. Station identifiers reference `charger_records.record_id` from Assignment 1. The schema is defined in `../sql/a2_schema.sql` and applied by `initialise_database` to a database containing the A1 tables.
 
-Required message fields:
-`event_id`, `event_type`, `station_id`, `event_time`,
-`price_per_kwh`, `wholesale_per_kwh`.
+## Tables and views
 
-`event_type` is `price_update`. Preserve the original A1 `record_id` as
-`station_id`. Preserve timezone-naive event times until the team agrees on
-their timezone. Prices are AUD/kWh; wholesale prices may be negative.
+| Object | Purpose |
+|---|---|
+| `price_events` | Price-update history and original payloads |
+| `latest_station_price` | Most recent received price by event time for each station |
+| `session_events` | Session-start and session-end history |
+| `meter_readings` | Session telemetry, including cumulative energy |
+| `session_state` | One derived active or completed state per session |
+| `station_session_metrics` | Active sessions, occupied connectors, completed sessions, energy and revenue |
 
-## Windows commands (run from repository root)
+Messages and Python query results use `event_time`; database columns use `event_ts`. Timestamps retain the generator's timezone-naive representation. Prices are AUD/kWh; wholesale prices may be negative. Meter energy is cumulative and must not be summed across readings.
 
-Install A2 dependencies:
+## Validation and duplicate handling
 
-```bat
-.venv\Scripts\python.exe -m pip install -r assignment2/requirements.txt
+- Identical event IDs and content return `duplicate` without inserting another row.
+- Conflicting content for the same ID or natural key raises an error.
+- Natural keys are station/time for prices, session/type for session events, and session/time for readings.
+- A session's start, end and readings must reference the same station and connector.
+- Unknown stations and invalid numerical values are rejected.
+- Session state is derived from stored history, so receiving an end before its start still produces one completed session.
+- Price-change filtering occurs during event preparation; the storage layer preserves valid received price events.
+
+The subscriber reports `STORED`, `DUPLICATE` or `STORE_ERROR`. Storage failures are not marked as processed. Correct the cause and replay failed events; automatic retry and manual MQTT acknowledgement are not implemented.
+
+## Queries
+
+`price_store.py` exposes `get_latest_price` and `get_price_history`. `session_store.py` exposes `get_station_session_metrics`, `get_station_sessions` and `get_session_readings`. Session lists return active sessions first, followed by recent completed sessions; the default list limit is 20. This limit does not affect ingestion, stored history or aggregate metrics.
+
+## Execution
+
+The application launcher coordinates the broker, subscriber, database and dashboard:
+
+```bash
+python assignment2/scripts/run_dashboard.py
 ```
 
-After starting a broker on localhost, start the subscriber first:
+For standalone ingestion, start a local broker and use an A1 database copy as the target. Start the subscriber before the publisher:
 
-```bat
-.venv\Scripts\python.exe assignment2/mqtt/subscriber.py --database assignment2/data/final/project_a2.duckdb --max-messages 1482
+```bash
+python assignment2/mqtt/subscriber.py --database path/to/receiving.duckdb --max-messages 1482
+python assignment2/mqtt/publisher.py --events assignment2/data/events/replay_events.jsonl --interval 0.1
 ```
 
-Then run the publisher in another terminal:
+Run these commands in separate terminals. Omitting `--database` enables logging without storage. One process must own database writes; the integrated application shares its connection and lock with dashboard queries.
 
-```bat
-.venv\Scripts\python.exe assignment2/mqtt/publisher.py --interval 0.1
+## Tests
+
+```bash
+python -m unittest discover -s assignment2/tests -v
 ```
 
-The database path must already contain an A1 database copy. Initialization
-adds the price table and view. Omitting `--database` preserves B's logging-only
-mode. Only one process should own database writes; arrange dashboard access
-with C before running a separate process against an open writable database.
-
-## Results and errors
-
-- `STORED`: the event was committed to DuckDB.
-- `DUPLICATE`: the same event/content is already stored.
-- `STORE_ERROR`: the write failed; it is not marked as processed.
-  Inspect the error and replay after correcting the cause. Automatic retry and
-  MQTT manual acknowledgment are not implemented.
-- In database mode, `--max-messages` counts inserted plus database-duplicate
-  messages so a complete replay of the same events can finish.
-- Same ID with different stored price/time/station, or conflicting prices for
-  the same station and time, produces an error.
-- New event times with equal prices are retained if received; B handles
-  filtering consecutive unchanged prices.
-- `get_latest_price(path, station_id)` returns a dictionary or `None`.
-  `get_price_history(path, station_id)` returns dictionaries in event-time order.
-  Both expose `event_time` and numeric price values.
-
-## Offline checks
-
-```bat
-.venv\Scripts\python.exe -m unittest discover -s assignment2/tests -v
-```
-
-The integration check uses a representative selection of the committed price events, the subscriber callback, and a
-temporary copy of the real A1 database. It checks initial writes, duplicates after restarting the subscriber, latest prices at 01:00,
-conflict detection and manual retry after a failed write.
-It does not establish a live MQTT connection or modify the submitted A2 DB.
-
-# Session and meter storage (four event types)
-
-`storage/session_store.py` adds `session_start`, `session_end` and `meter`
-storage to the same A2 database; the DDL is appended to `sql/a2_schema.sql`
-and is applied by the same `initialise_database` call. The subscriber now
-calls `store_event(path, event)`, which sends `price_update` to
-`store_price_event` and the other types to `store_session_event` /
-`store_meter_event`.
-
-Tables and views:
-
-- `session_events`: received `session_start` / `session_end` events, one per
-  session and type (`UNIQUE (session_id, event_type)`). Final energy, cost and
-  charge-end time are columns that only `session_end` fills.
-- `meter_readings`: received readings, `UNIQUE (session_id, event_ts)`.
-  `energy_kwh` is cumulative per session and is never summed across rows.
-- `session_state` (view): one row per session; `active` while no end has been
-  received, then `completed`. An end that arrives before its start still
-  yields one completed session.
-- `station_session_metrics` (view): active sessions, occupied connectors,
-  completed sessions, completed kWh and revenue per station.
-
-Metrics are derived from stored events instead of counters, so a duplicate
-message cannot be counted twice and a replay of the same file changes nothing.
-
-Duplicate and conflict rules follow the price stage: same `event_id` and
-content, or same natural key and content, returns `duplicate`; same ID or key
-with different content raises `ValueError`; so does a session whose start,
-end or readings name a different station or connector, an unknown station,
-or `soc_pct` above 100.
-
-Queries for the dashboard: `get_station_session_metrics(path, station_id)`,
-`get_station_sessions(path, station_id)` (active first, then recent completed,
-with reading counts) and `get_session_readings(path, session_id)` in event-time
-order.
-
-The dashboard subscriber and queries share a persistent DuckDB connection protected by a lock. Standalone storage calls can also use a database path. The refresh timer pauses while its callback is running to avoid overlapping refresh requests.
-Checks: `tests/test_session_store.py` and `tests/test_dashboard.py`.
+Tests cover ingestion, duplicate handling, conflicts, late events, session lifecycle, metrics and concurrent dashboard access. Tests use temporary databases and leave the submitted database unchanged.

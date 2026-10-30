@@ -46,7 +46,7 @@ class ReplayEventTests(unittest.TestCase):
         keys = [(e["event_time"], EVENT_ORDER[e["event_type"]]) for e in self.generated_events]
         self.assertEqual(keys, sorted(keys))
 
-    def test_counts_and_price_events_match_price_stage(self):
+    def test_counts_and_price_event_subset_match(self):
         counts = {event_type: 0 for event_type in EVENT_ORDER}
         for event in self.events:
             counts[event["event_type"]] += 1

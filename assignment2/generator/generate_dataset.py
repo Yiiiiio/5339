@@ -18,7 +18,7 @@ Calibration sources (see README.md):
 Only the Python standard library is used.
 
 Example:
-  python generate_dataset.py --stations demo_stations.csv --start 2026-10-01 --days 14 --out data
+  python assignment2/generator/generate_dataset.py --stations assignment2/data/input/stations.csv --start 2026-09-15 --days 1 --sessions-per-connector-day 3.1 2.1 --seed 5339 --out assignment2/data/generated/dc_data
 """
 import argparse
 import csv
@@ -159,7 +159,7 @@ def simulate_session(rng, st, conn_id, sess_id, t0, price, args):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--stations", default="demo_stations.csv")
+    ap.add_argument("--stations", required=True)
     ap.add_argument("--start", default="2026-10-01")
     ap.add_argument("--days", type=int, default=14)
     ap.add_argument("--region", default="NSW1")

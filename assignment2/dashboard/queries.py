@@ -2,8 +2,8 @@
 
 Everything shown comes from events that the storage layer has received:
 ``latest_station_price``, ``station_session_metrics`` and the session/meter
-tables. The generator's ``base_price`` and the generated CSVs are never read,
-so the page cannot show a price or session state before its event arrives.
+tables. Generated station metadata supplies labels and connector counts;
+prices and session state come only from received events.
 """
 
 from __future__ import annotations
@@ -88,7 +88,7 @@ class DashboardData:
     """Query station details and received prices from the A2 database.
 
     ``lock`` serialises database access with an in-process subscriber so a
-    read-only connection never overlaps C's write connection.
+    read-only connection never overlaps the subscriber's write connection.
     """
 
     def __init__(

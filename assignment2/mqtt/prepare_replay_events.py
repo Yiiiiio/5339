@@ -5,7 +5,7 @@ Window rules (half-open ``[start, end)``):
 
 - Prices: each station's effective price at ``start`` (its latest retained
   initial/change event at or before ``start``) plus every price change inside
-  the window. B's price filtering in ``prepare_price_events`` is reused.
+  the window. price filtering in ``prepare_price_events`` is reused.
 - Sessions: every session that overlaps the window (``start_ts < end`` and
   ``end_ts >= start``) contributes its ``session_start`` and all of its meter
   readings before ``end``, even if they precede ``start``, so a session that

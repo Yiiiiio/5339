@@ -23,7 +23,7 @@ From the repository root:
 ```bash
 python assignment2/mqtt/prepare_price_events.py
 python assignment2/mqtt/prepare_replay_events.py
-python assignment2/scripts/run_demo.py
+python assignment2/scripts/run_dashboard.py
 ```
 
 The local broker listens on 127.0.0.1:1883. Publishing uses QoS 1, no retained messages, and a minimum 0.1-second interval. A broker acknowledgement alone is not proof of database insertion; verify accepted-event and stored-event counts. The launcher waits for a successful subscription acknowledgement before publication.

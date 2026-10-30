@@ -60,7 +60,7 @@ class DatabaseTests(unittest.TestCase):
     def test_orphan_augmentation_rejected_without_overwriting(self):
         self.invalid_input_case('charger_attributes.csv', 'record_id', 'unknown_record')
 
-    def test_stale_spatial_handoff_rejected_without_overwriting(self):
+    def test_stale_spatial_input_rejected_without_overwriting(self):
         self.invalid_input_case('charger_sa4.csv', 'Longitude', '0')
 
 

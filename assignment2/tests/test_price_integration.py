@@ -1,4 +1,4 @@
-"""Exercise B's real messages through the subscriber callback into C's database.
+"""Verify event ingestion through the subscriber callback into DuckDB.
 
 No broker is contacted. A temporary copy of the actual A1 database is used.
 """

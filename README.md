@@ -1,4 +1,28 @@
-# COMP5339 Assignment 1
+# COMP5339 EV Charging Data Streaming and Analysis
+
+Assignment 2 integrates synthetic charging data, MQTT event streaming, DuckDB storage and an interactive dashboard. The repository includes the Assignment 1 source data and database used by Assignment 2.
+
+## Assignment 2
+
+- [Project structure, installation and execution](assignment2/README.md)
+- [Data preparation and generation notebook](assignment2/Data_Preparation_and_Generation.ipynb)
+- [Event stream documentation](assignment2/data/events/replay_notes.md)
+- [Database schema](assignment2/sql/a2_schema.sql)
+
+From the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r assignment2/requirements.txt
+python assignment2/scripts/run_dashboard.py
+```
+
+On Windows, activate with `.venv\Scripts\activate`. On macOS, `START_DASHBOARD.command` starts the application after environment setup. Notebook execution instructions are included in the Assignment 2 README.
+
+Keep the repository structure, including `data/processed/chargers_clean.csv`, `data/final/project.duckdb` and the `assignment2` directory. Runtime databases and logs are created separately in `assignment2/data/runtime`.
+
+## Assignment 1 data pipeline
 
 
 ## 1. Project Structure

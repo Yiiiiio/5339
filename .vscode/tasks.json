@@ -6,7 +6,7 @@
       "type": "process",
       "command": "${workspaceFolder}/.venv/bin/python",
       "args": [
-        "assignment2/scripts/run_demo.py"
+        "assignment2/scripts/run_dashboard.py"
       ],
       "options": {
         "cwd": "${workspaceFolder}"

@@ -1,6 +1,6 @@
 """Check the dashboard reads only received events from the A2 database.
 
-No broker or browser is used. B's subscriber callback receives the real
+No broker or browser is used. the subscriber callback receives the real
 four-type replay and writes to a cleared copy of the submitted A2 database.
 """
 
@@ -26,7 +26,7 @@ from assignment2.dashboard.app import (
     start_subscriber,
     station_signature,
 )
-from assignment2.dashboard.prepare_demo_db import prepare_demo_database
+from assignment2.dashboard.prepare_replay_db import prepare_replay_database
 from assignment2.dashboard.queries import DashboardData, load_simulated_stations
 from assignment2.mqtt.event_schema import topic_for
 
@@ -70,8 +70,8 @@ def expected_state(events):
 class DashboardTests(unittest.TestCase):
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()
-        self.db = Path(self.folder.name) / "demo.duckdb"
-        prepare_demo_database(A2_DB, self.db)
+        self.db = Path(self.folder.name) / "replay.duckdb"
+        prepare_replay_database(A2_DB, self.db)
         self.stations = load_simulated_stations(STATIONS)
         self.lock = threading.Lock()
         self.data = DashboardData(self.db, self.stations, self.lock)
@@ -119,9 +119,9 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(sum(s["plug_types"] is not None for s in snapshot["stations"]), expected)
 
         with self.assertRaises(ValueError):
-            prepare_demo_database(A2_DB, A2_DB)
+            prepare_replay_database(A2_DB, A2_DB)
         with self.assertRaises(FileExistsError):
-            prepare_demo_database(A2_DB, self.db)
+            prepare_replay_database(A2_DB, self.db)
 
     def test_partial_replay_matches_events(self):
         subscriber = self.start_subscriber()

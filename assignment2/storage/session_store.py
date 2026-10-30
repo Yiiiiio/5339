@@ -2,7 +2,7 @@
 
 ``store_event`` is the single write entry point for the subscriber: it sends
 ``price_update`` to ``price_store`` and the other three types here. Duplicate
-and conflict handling follows the price stage:
+and conflict handling uses these rules:
 
 - same ``event_id`` and same content -> ``duplicate``;
 - same ``event_id`` with different content -> ``ValueError``;

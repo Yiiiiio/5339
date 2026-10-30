@@ -2,7 +2,7 @@
 """Map the simulated EV charging stations with live prices, occupancy and charging curves.
 
 The page polls the A2 DuckDB on a timer. With ``--subscribe`` the same process
-also runs B's MQTT subscriber, so one process owns database writes and the
+also runs the MQTT subscriber, so one process owns database writes and the
 dashboard's reads are serialised with them through a shared lock.
 """
 
@@ -113,7 +113,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--subscribe",
         action="store_true",
-        help="Run B's MQTT subscriber in this process and store received events.",
+        help="Run the MQTT subscriber in this process and store received events.",
     )
     parser.add_argument("--mqtt-host", default="localhost", help="MQTT Broker host.")
     parser.add_argument("--mqtt-port", type=int, default=1883, help="MQTT Broker port.")
@@ -141,7 +141,7 @@ def parse_arguments() -> argparse.Namespace:
 
 
 def start_subscriber(args: argparse.Namespace, lock: threading.Lock) -> Any:
-    """Start B's subscriber in a background thread, sharing ``lock`` for writes."""
+    """Start the subscriber in a background thread, sharing ``lock`` for writes."""
 
     from assignment2.mqtt.subscriber import PriceSubscriber
 

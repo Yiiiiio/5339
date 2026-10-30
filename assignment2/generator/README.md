@@ -3,24 +3,25 @@
 Calibrated synthetic data for EV fast chargers: hourly **dynamic prices**, **charging sessions**
 (start/end/duration/kWh/power), and **per-minute meter telemetry** (voltage, current, kW, kWh, SoC).
 
-## Quick start
+The simulation model is based on the course-provided generator. The command-line interface requires an explicit station input file.
+
+## Run from the repository root
 ```bash
-python generate_dataset.py --stations demo_stations.csv --start 2026-10-01 --days 14 --out data
+python assignment2/generator/generate_dataset.py --stations assignment2/data/input/stations.csv --start 2026-09-15 --days 1 --sessions-per-connector-day 3.1 2.1 --seed 5339 --out assignment2/data/generated/dc_data
 ```
 The generator uses only the Python standard library. It downloads real AEMO NSW wholesale prices 
-for the chosen months and caches them in `data/aemo_cache/`.
+for the chosen months and caches them in the output directory’s `aemo_cache/`.
 
-## Outputs (`data/`)
+## Outputs (`assignment2/data/generated/dc_data/`)
 | File | Content |
 |---|---|
 | `stations.csv` | id, name, lat, lon, site\_type (urban/regional), connectors, max\_kw, base\_price |
 | `prices_hourly.csv` | ts, station\_id, price\_per\_kwh, wholesale\_per\_kwh |
 | `sessions.csv` | session\_id, station, connector, vehicle\_model, start\_ts, charge\_end\_ts, end\_ts, charge\_minutes, energy\_kwh, avg\_kw, peak\_kw, price\_per\_kwh, cost\_aud |
-| `session_metering.csv` | time-ordered meter telemetry data: ts, station\_id, connector\_id, session\_id, volatge\_v, current\_a, power\_kw, energy\_kwh, soc\_pct |
+| `session_metering.csv` | time-ordered meter telemetry data: ts, station\_id, connector\_id, session\_id, voltage\_v, current\_a, power\_kw, energy\_kwh, soc\_pct |
 
-## Using real NRMA charger locations
-`demo_stations.csv` uses **town-centre coordinates**, not real charger sites. To use real sites,
-supply a CSV with the same columns from the ev-charger dataset already used in Assignment 1.
+## Station input
+The input contains all 433 DC records from the cleaned Assignment 1 dataset. `station_id` preserves the A1 `record_id`. Input preparation and assumptions are documented in `../Data_Preparation_and_Generation.ipynb`.
 
 ## How it is modelled and calibrated
 **Prices.** NRMA does **not** use time-of-use or dynamic pricing. It charges a flat $/kWh by charger
@@ -42,21 +43,8 @@ trial charged $0.12–1.20/kWh, and Tesla Superchargers range from about $0.43 t
 targets about 74%. Power is limited by the charger's rating, the charger's current limit, the vehicle's
 taper curve above 50% SoC, and a real-world derating factor. Pack voltage rises with SoC, and current = P/V.
 
-**Calibration check** (14 days, 20 stations, seed 5339) against the ARENA 2023 averages:
-
-| | generated | ARENA 2023 |
-|---|---|---|
-| urban | 26.0 min / 25.8 kWh | 27.3 min / 27.0 kWh |
-| regional | 24.8 min / 25.2 kWh | 25.9 min / 24.5 kWh |
-
-Caveat: the hourly start profile, the fleet mix and the derating are approximations read from charts
+Model limitations: the hourly start profile, the fleet mix and the derating are approximations read from charts
 or estimated. They are not published figures.
-
-## Real (non-synthetic) alternatives
-- **Caltech ACN-Data**: real sessions with charging-current and pilot-signal time series. These are
-  US Level-2 AC chargers, not DC fast chargers. Free API token; Python client `acnportal`. https://ev.caltech.edu/dataset
-- **Perth & Kinross Council (Scotland)**: session-level data (start, end, kWh). IEEE DataPort, DOI 10.21227/3dbt-2v65
-- **AEMO price & demand**: real 5-minute NSW wholesale prices, used here. https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/data-nem/aggregated-data
 
 ## Sources
 - ARENA / Energeia, *Insights from Ultra-Fast Charging Network Data (Update)*, Aug 2023 (CC BY 3.0 AU): https://arena.gov.au/knowledge-bank/insights-from-ultra-fast-charging-network-data

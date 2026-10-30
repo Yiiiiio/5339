@@ -1,7 +1,6 @@
 """Store and query Assignment 2 ``price_update`` events in DuckDB.
 
-The first project stage deliberately handles only price events. Session and
-meter events will be added after the price path is working end to end.
+Price history is retained, and the latest station price is derived by a view.
 """
 
 from __future__ import annotations

@@ -38,8 +38,8 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=A2_ROOT / "data/demo/demo_a2.duckdb",
-        help="Demo database to create.",
+        default=A2_ROOT / "data/runtime/replay.duckdb",
+        help="Replay database to create.",
     )
     parser.add_argument(
         "--force",
@@ -49,7 +49,7 @@ def parse_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def prepare_demo_database(source: Path, output: Path, *, force: bool = False) -> int:
+def prepare_replay_database(source: Path, output: Path, *, force: bool = False) -> int:
     """Create ``output`` without received events and return the removed count."""
 
     source = source.resolve()
@@ -69,8 +69,7 @@ def prepare_demo_database(source: Path, output: Path, *, force: bool = False) ->
     shutil.copy2(source, output)
     initialise_database(output)
     removed = 0
-    # Drop and recreate instead of DELETE: deleting many rows from an indexed
-    # DuckDB table failed with an index error on an older schema version.
+    # Recreate event tables to reset data and indexes consistently.
     with duckdb.connect(str(output)) as connection:
         for view in EVENT_VIEWS:
             connection.execute(f"DROP VIEW IF EXISTS {view}")
@@ -84,7 +83,7 @@ def prepare_demo_database(source: Path, output: Path, *, force: bool = False) ->
 def main() -> int:
     args = parse_arguments()
     try:
-        removed = prepare_demo_database(args.source, args.output, force=args.force)
+        removed = prepare_replay_database(args.source, args.output, force=args.force)
     except (OSError, ValueError, duckdb.Error) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 1

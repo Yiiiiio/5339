@@ -2,7 +2,7 @@
 
 ## Data preparation and generation
 
-Run `Data_Preparation_and_Generation.ipynb` from within the repository using Python 3.9 or later. The notebook uses the Python standard library and the supplied, unchanged `generator/generate_dataset.py`. It reads `../data/processed/chargers_clean.csv`, selects all 433 DC records in source order, and preserves A1 `record_id` as `station_id`.
+Run `Data_Preparation_and_Generation.ipynb` from within the repository using Python 3.10 or later. The notebook uses the Python standard library and the course-provided simulation model in `generator/generate_dataset.py`. It reads `../data/processed/chargers_clean.csv`, selects all 433 DC records in source order, and preserves A1 `record_id` as `station_id`.
 
 The simulation covers 15 September 2026 for one day, with seed 5339 and urban/regional session rates of 3.1/2.1 per connector per day. The included AEMO NSW1 cache supports offline reproduction. Run all cells to prepare inputs, generate data, validate relationships and times, and save provenance records. Rerunning overwrites these generated outputs.
 
@@ -38,17 +38,24 @@ Use Python 3.10 or later. From the repository root:
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r assignment2/requirements.txt
-python assignment2/scripts/run_demo.py
+python assignment2/scripts/run_dashboard.py
 ```
 
-On Windows, activate with `.venv\Scripts\activate` instead. On macOS, `START_DEMO.command` launches the same program after environment setup. VS Code provides the **Start charging dashboard** task.
+On Windows, activate with `.venv\Scripts\activate` instead. On macOS, `START_DASHBOARD.command` launches the same program after environment setup. VS Code provides the **Start charging dashboard** task.
 
-The launcher creates a clean database copy, starts the local MQTT broker and dashboard, waits for the subscription acknowledgement, and opens http://127.0.0.1:8050. Press Enter in the terminal to replay the events. Keep the terminal open; Ctrl+C stops the services. The stored results remain in `data/demo/demo_a2.duckdb`. The source database in `data/final` is not reset by the launcher.
+The launcher creates a clean database copy, starts the local MQTT broker and dashboard, waits for the subscription acknowledgement, and opens http://127.0.0.1:8050. Press Enter in the terminal to replay the events. Keep the terminal open; Ctrl+C stops the services. The stored results remain in `data/runtime/replay.duckdb`. The source database in `data/final` is not reset by the launcher.
 
 To view the included database without starting MQTT:
 
 ```bash
 python assignment2/dashboard/app.py
+```
+
+To open and execute the data preparation notebook, install the notebook environment:
+
+```bash
+python -m pip install -r assignment2/requirements-notebook.txt
+python -m jupyterlab assignment2/Data_Preparation_and_Generation.ipynb
 ```
 
 ## Event preparation

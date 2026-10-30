@@ -95,7 +95,7 @@ def build_database(root):
     aa, bb = index_rows(a, 'A'), index_rows(b, 'B')
     if aa.keys() != bb.keys():
         raise ValueError('A/B record_id sets differ')
-    # B carries a copy of A. Reject stale handoffs, but tolerate numeric formatting.
+    # Spatial output retains source fields. Reject inconsistent values, allowing numeric formatting.
     numeric = {'Latitude', 'Longitude', 'Number_of_plugs', 'power_kw'}
     for key, row in aa.items():
         for col in a_cols:
@@ -193,7 +193,7 @@ def build_database(root):
         if connectors:
             con.executemany('INSERT INTO attribute_connectors VALUES (?, ?, ?, ?)', connectors)
 
-        # Full independent SQL point-in-polygon recheck in B's boundary CRS.
+        # Independent SQL point-in-polygon check in the boundary CRS.
         con.execute('''CREATE TEMP TABLE spatial_recheck AS
             SELECT c.record_id, r.SA4_CODE26
             FROM charger_records c LEFT JOIN sa4_regions r
