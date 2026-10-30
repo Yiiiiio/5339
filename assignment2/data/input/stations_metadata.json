@@ -1,5 +1,5 @@
 {
-  "source": "data/processed/chargers_clean.csv",
+  "source": "a1_dependencies/processed/chargers_clean.csv",
   "source_sha256": "99c83df26c9f595dc42987832cb92b2e6a3ca98c8084f678de511c743d2060af",
   "selection": "All DC records in source order; no deduplication or renumbering",
   "urban_lga_allowlist": [

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import duckdb
 
-from assignment2.storage.price_store import (
+from storage.price_store import (
     get_latest_price,
     get_price_history,
     initialise_database,
@@ -15,9 +15,9 @@ from assignment2.storage.price_store import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[2]
-STATIONS_CSV = ROOT / "assignment2/data/generated/dc_data/stations.csv"
-PRICES_CSV = ROOT / "assignment2/data/generated/dc_data/prices_hourly.csv"
+ROOT = Path(__file__).resolve().parents[1]
+STATIONS_CSV = ROOT / "data/generated/dc_data/stations.csv"
+PRICES_CSV = ROOT / "data/generated/dc_data/prices_hourly.csv"
 
 
 class PriceStoreTests(unittest.TestCase):

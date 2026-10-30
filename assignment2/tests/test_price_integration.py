@@ -16,17 +16,17 @@ from unittest.mock import patch
 
 import duckdb
 
-from assignment2.mqtt.subscriber import PriceSubscriber
-from assignment2.storage.price_store import get_latest_price, get_price_history
+from mqtt.subscriber import PriceSubscriber
+from storage.price_store import get_latest_price, get_price_history
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class PriceIntegrationTests(unittest.TestCase):
     def test_real_events_restart_conflict_and_retry(self):
         events = [
             json.loads(line)
-            for line in (ROOT / "assignment2/data/events/price_events.jsonl")
+            for line in (ROOT / "data/events/price_events.jsonl")
             .read_text(encoding="utf-8").splitlines() if line.strip()
         ]
         station_ids = list(dict.fromkeys(e["station_id"] for e in events))[:8]
@@ -35,7 +35,7 @@ class PriceIntegrationTests(unittest.TestCase):
         self.assertEqual(event_count, 2 * len(station_ids))
         with tempfile.TemporaryDirectory() as folder:
             db = Path(folder) / "integration.duckdb"
-            shutil.copy2(ROOT / "data/final/project.duckdb", db)
+            shutil.copy2(ROOT / "a1_dependencies/final/project.duckdb", db)
             args = Namespace(
                 database=db, username=None, password=None, client_id="offline-test",
                 output=None, max_messages=event_count,
@@ -48,7 +48,7 @@ class PriceIntegrationTests(unittest.TestCase):
                 )
                 subscriber.on_message(None, None, message)
 
-            with patch("assignment2.mqtt.subscriber.mqtt.Client"), \
+            with patch("mqtt.subscriber.mqtt.Client"), \
                     redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                 first = PriceSubscriber(args)
                 for event in events:

@@ -8,7 +8,7 @@ import time
 import urllib.request
 import webbrowser
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
 URL = 'http://127.0.0.1:8050'
 
@@ -23,7 +23,7 @@ def wait_for(check, process, name):
     deadline = time.monotonic() + 45
     while time.monotonic() < deadline:
         if process.poll() is not None:
-            raise RuntimeError(f'{name} stopped. Check assignment2/data/runtime logs.')
+            raise RuntimeError(f'{name} stopped. Check data/runtime logs.')
         if check():
             return
         time.sleep(0.2)
@@ -41,11 +41,11 @@ def main():
     for port in (1883, 8050):
         if port_open(port):
             raise RuntimeError(f'Port {port} is in use. Stop the running application before restarting.')
-    subprocess.run([PYTHON, 'assignment2/dashboard/prepare_replay_db.py', '--force'], cwd=ROOT, check=True)
-    logdir = ROOT / 'assignment2/data/runtime'
+    subprocess.run([PYTHON, 'dashboard/prepare_replay_db.py', '--force'], cwd=ROOT, check=True)
+    logdir = ROOT / 'data/runtime'
     received_path = logdir / 'received_events.jsonl'
     received_path.write_text('')
-    expected_events = [json.loads(line) for line in (ROOT / 'assignment2/data/events/replay_events.jsonl').read_text().splitlines() if line.strip()]
+    expected_events = [json.loads(line) for line in (ROOT / 'data/events/replay_events.jsonl').read_text().splitlines() if line.strip()]
     processes = []
     logs = []
     try:
@@ -57,9 +57,9 @@ def main():
             processes.append(child)
             return child
 
-        broker = start('assignment2/scripts/broker.py', 'broker.log')
+        broker = start('scripts/broker.py', 'broker.log')
         wait_for(lambda: 'MQTT broker ready' in (logdir / 'broker.log').read_text(), broker, 'MQTT broker')
-        dashboard = start('assignment2/scripts/dashboard_entry.py', 'dashboard.log', '--database', 'assignment2/data/runtime/replay.duckdb', '--subscribe', '--mqtt-host', '127.0.0.1', '--received-log', str(received_path))
+        dashboard = start('scripts/dashboard_entry.py', 'dashboard.log', '--database', 'data/runtime/replay.duckdb', '--subscribe', '--mqtt-host', '127.0.0.1', '--received-log', str(received_path))
 
         def ready():
             if 'SUBSCRIBED' not in (logdir / 'dashboard.log').read_text():
@@ -75,13 +75,13 @@ def main():
         if not args.no_browser:
             webbrowser.open(URL)
         if not args.auto:
-            event_count = sum(bool(line.strip()) for line in (ROOT / 'assignment2/data/events/replay_events.jsonl').read_text().splitlines())
+            event_count = sum(bool(line.strip()) for line in (ROOT / 'data/events/replay_events.jsonl').read_text().splitlines())
             input(f'Open the dashboard, then press Enter here to send {event_count} events: ')
         else:
             time.sleep(3)
         publisher = subprocess.Popen([
-            PYTHON, '-u', 'assignment2/mqtt/publisher.py', '--host', '127.0.0.1',
-            '--interval', str(args.interval), '--events', 'assignment2/data/events/replay_events.jsonl',
+            PYTHON, '-u', 'mqtt/publisher.py', '--host', '127.0.0.1',
+            '--interval', str(args.interval), '--events', 'data/events/replay_events.jsonl',
         ], cwd=ROOT)
         processes.append(publisher)
         result = publisher.wait()

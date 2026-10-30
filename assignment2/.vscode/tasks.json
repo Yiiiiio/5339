@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start charging dashboard",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": [
+        "scripts/run_dashboard.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,4697 @@
+{
+  "source": "Open Charge Map API v3",
+  "retrieved_at_utc": "2026-09-19T14:34:49.697786+00:00",
+  "search_radius_km": 1.0,
+  "records": [
+    {
+      "record_id": "ev_e795ae9310df33c9b9f8840aea501aec56db120b534e345b0fc6a3d5ce041b7b",
+      "input_address": "01 Wallgrove Road, Sydney, 2766",
+      "input_operator": "BP",
+      "input_latitude": -33.81100405,
+      "input_longitude": 150.8495966,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.bp.com/en_au/australia/home/products-services/bppulse.html",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3659,
+            "Title": "BP Pulse (AU)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-08-09T12:21:00Z",
+          "ID": 272521,
+          "UUID": "99D35B44-B880-47A5-A21D-B10630EDF71C",
+          "DataProviderID": 1,
+          "OperatorID": 3659,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.55/kWh",
+          "AddressInfo": {
+            "ID": 272905,
+            "Title": "BP Pulse Eastern Creek",
+            "AddressLine1": "BP Truckstop",
+            "AddressLine2": "Wallgrove Road & Old Wallgrove Road",
+            "Town": "Eastern Creek",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2766",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.811041669720204,
+            "Longitude": 150.85030018744214,
+            "AccessComments": "Pass by the car bowsers to the left of the store - charger is approximately just across the driveway at the rear corner of the store",
+            "RelatedURL": "https://www.bp.com/en_au/australia/home/products-services/bppulse.html?gclid=CjwKCAjwwb6lBhBJEiwAbuVUShyWLh-WRk2QR_7b7HqMryRBvEu01i9OAzPc3woV7dXV2WJzWxtG6xoCZWQQAvD_BwE",
+            "Distance": 0.06513844654843073,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 466851,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "BPAC6795",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 75,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-08-09T12:21:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-13T11:30:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_92a54038955adbf16c92062ab57a4b497be32cb889fcc2b6cb5d53a12c433e0c",
+      "input_address": "1 - 7 Ross St, Wilcannia NSW 2836, Australia",
+      "input_operator": "NRMA",
+      "input_latitude": -30.5118739,
+      "input_longitude": 151.669395,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2020-12-11T13:42:00Z",
+          "ID": 170824,
+          "UUID": "933379E2-3651-48DE-8908-41F401AAF5B4",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 1,
+          "UsageCost": "Currently free but will be fee at some point.",
+          "AddressInfo": {
+            "ID": 171183,
+            "Title": "Armidale Visitors Centre",
+            "AddressLine1": "82 Marsh Street",
+            "Town": "Armidale",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2350",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -30.511645241125954,
+            "Longitude": 151.66954542599308,
+            "Distance": 0.029225432400786636,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 261015,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 261016,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2020-12-11T13:42:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2020-12-10T12:47:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.tesla.com/en_AU/support/non-tesla-supercharging",
+            "Comments": "Tesla charging including support for non-tesla vehicles",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3534,
+            "Title": "Tesla (including non-tesla)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2025-09-01T05:09:00Z",
+          "ID": 460615,
+          "UUID": "F1007179-B0BC-4DCB-AC3C-7FA1CB24EA73",
+          "DataProviderID": 1,
+          "OperatorID": 3534,
+          "UsageTypeID": 4,
+          "UsageCost": "",
+          "AddressInfo": {
+            "ID": 461004,
+            "Title": "Tesla Supercharger Armidale",
+            "AddressLine1": "117 Jessie Street",
+            "Town": "Armidale",
+            "StateOrProvince": "NSW",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -30.51342702073365,
+            "Longitude": 151.66370928733022,
+            "Distance": 0.5713937674543099,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 774948,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 250,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 4
+            }
+          ],
+          "NumberOfPoints": 4,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2025-09-01T05:09:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2025-08-28T06:40:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "Comments": "For use when the operator of the equipment is a single business owner connected to the location and equipment is not part of a larger network",
+            "IsPrivateIndividual": false,
+            "ID": 45,
+            "Title": "(Business Owner at Location)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": false,
+            "IsAccessKeyRequired": false,
+            "ID": 6,
+            "Title": "Private - For Staff, Visitors or Customers"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-10-09T02:47:00Z",
+          "ID": 274592,
+          "UUID": "F8A7B177-0BBD-4FC0-B78C-8DBF3C187228",
+          "DataProviderID": 1,
+          "OperatorID": 45,
+          "UsageTypeID": 6,
+          "UsageCost": "$15 for guest who do not book direct.  Free for guest who book direct.",
+          "AddressInfo": {
+            "ID": 274976,
+            "Title": "Cedar Lodge Motel",
+            "AddressLine1": "119 Barney Street",
+            "Town": "Armidale",
+            "StateOrProvince": "NSW",
+            "Postcode": "2350",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -30.5168745388638,
+            "Longitude": 151.66662986871611,
+            "ContactTelephone1": "02 6772 9511",
+            "RelatedURL": "https://www.cedarlodgemotel.com.au/pages/location/",
+            "Distance": 0.61591452967268,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 476337,
+              "ConnectionTypeID": 25,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-2 Type 2",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 25,
+                "Title": "Type 2 (Socket Only)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 2,
+              "Level": {
+                "Comments": "Over 2 kW, usually non-domestic socket type",
+                "IsFastChargeCapable": false,
+                "ID": 2,
+                "Title": "Level 2 : Medium (Over 2kW)"
+              },
+              "Amps": 30,
+              "PowerKW": 7,
+              "CurrentTypeID": 10,
+              "CurrentType": {
+                "Description": "Alternating Current - Single Phase",
+                "ID": 10,
+                "Title": "AC (Single-Phase)"
+              },
+              "Quantity": 2,
+              "Comments": "2 x 7Kw Type 2 Chargers shared across 4 motel car parks. Request one when Booking Direct"
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-10-09T02:47:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-09-19T06:24:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_357c3ca140819629070a2e9b19d8727c0411780adcc388593c413bb502f677e4",
+      "input_address": "1 Bay St, Sydney, 2037",
+      "input_operator": "Tesla",
+      "input_latitude": -33.88350355,
+      "input_longitude": 151.1944334,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.tesla.com/en_AU/support/non-tesla-supercharging",
+            "Comments": "Tesla charging including support for non-tesla vehicles",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3534,
+            "Title": "Tesla (including non-tesla)"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "UserComments": [
+            {
+              "ID": 30364,
+              "ChargePointID": 311308,
+              "CommentTypeID": 10,
+              "CommentType": {
+                "ID": 10,
+                "Title": "General Comment"
+              },
+              "UserName": "~X~",
+              "Comment": "I have been successfully charging my EV (Non Tesla) here for more than 3 times. It is a Tesla Destination Charging, Tesla Wall charger and it is free courtesy of Broadway Shopping Centre.\r\n\r\nSometimes you have to wait but most of the time, the wait time is not long.",
+              "Rating": 5,
+              "RelatedURL": "https://www.broadwaysydney.com.au/Visit/Parking",
+              "DateCreated": "2025-03-21T00:54:05.74Z",
+              "User": {
+                "ID": 57365,
+                "Username": "~X~",
+                "ReputationPoints": 6,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/bb3d99d9824554473783141a520b1102?s=80&d=robohash"
+              },
+              "CheckinStatusTypeID": 10,
+              "CheckinStatusType": {
+                "IsPositive": true,
+                "IsAutomatedCheckin": false,
+                "ID": 10,
+                "Title": "Charged Successfully"
+              },
+              "IsActionedByEditor": false
+            }
+          ],
+          "MediaItems": [
+            {
+              "ID": 45354,
+              "ChargePointID": 311308,
+              "ItemURL": "https://media.openchargemap.io/images/AU/OCM311308/OCM-311308.orig.2025032100552896.jpg",
+              "ItemThumbnailURL": "https://media.openchargemap.io/images/AU/OCM311308/OCM-311308.thmb.2025032100552896.jpg",
+              "Comment": "Successfully charging at Tesla Destination Charger at Broadway Shopping Centre on 15/03/2025.",
+              "IsEnabled": true,
+              "IsVideo": false,
+              "IsFeaturedItem": false,
+              "IsExternalResource": false,
+              "User": {
+                "ID": 57365,
+                "Username": "~X~",
+                "ReputationPoints": 6,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/bb3d99d9824554473783141a520b1102?s=80&d=robohash"
+              },
+              "DateCreated": "2025-03-21T00:56:00Z"
+            }
+          ],
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2025-03-29T03:34:00Z",
+          "ID": 311308,
+          "UUID": "F5C00528-3C30-4853-A252-0551F881702D",
+          "DataProviderID": 1,
+          "OperatorID": 3534,
+          "UsageTypeID": 1,
+          "UsageCost": "0",
+          "AddressInfo": {
+            "ID": 311697,
+            "Title": "Tesla Destination Charger",
+            "AddressLine1": "1 Bay Street",
+            "AddressLine2": "",
+            "Town": "Broadway",
+            "StateOrProvince": "NSW",
+            "Postcode": "2007",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.883393295749826,
+            "Longitude": 151.1945968746586,
+            "AccessComments": "At Parking B2 level near the exit to Bay Street.",
+            "Distance": 0.019442848783270926,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 599881,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 2,
+              "Level": {
+                "Comments": "Over 2 kW, usually non-domestic socket type",
+                "IsFastChargeCapable": false,
+                "ID": 2,
+                "Title": "Level 2 : Medium (Over 2kW)"
+              },
+              "Amps": 15,
+              "Voltage": 411,
+              "PowerKW": 22,
+              "CurrentTypeID": 20,
+              "CurrentType": {
+                "Description": "Alternating Current - Three Phase",
+                "ID": 20,
+                "Title": "AC (Three-Phase)"
+              },
+              "Quantity": 3,
+              "Comments": "FREE"
+            }
+          ],
+          "NumberOfPoints": 3,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2025-03-29T03:34:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2025-03-21T00:51:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "http://www.teslamotors.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 23,
+            "Title": "Tesla (Tesla-only charging)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "UserComments": [
+            {
+              "ID": 30365,
+              "ChargePointID": 100404,
+              "CommentTypeID": 10,
+              "CommentType": {
+                "ID": 10,
+                "Title": "General Comment"
+              },
+              "UserName": "~X~",
+              "Comment": "I visited this charging location many times where I charged at the non-tesla charging stations. The car park has 4 ChargeFox stations and 3 Tesla Destination stations, ",
+              "Rating": 5,
+              "DateCreated": "2025-03-21T01:00:41.09Z",
+              "User": {
+                "ID": 57365,
+                "Username": "~X~",
+                "ReputationPoints": 6,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/bb3d99d9824554473783141a520b1102?s=80&d=robohash"
+              },
+              "CheckinStatusTypeID": 140,
+              "CheckinStatusType": {
+                "IsPositive": true,
+                "IsAutomatedCheckin": false,
+                "ID": 140,
+                "Title": "Equipment & Location Confirmed Correct"
+              },
+              "IsActionedByEditor": false
+            }
+          ],
+          "MediaItems": [
+            {
+              "ID": 45355,
+              "ChargePointID": 100404,
+              "ItemURL": "https://media.openchargemap.io/images/AU/OCM100404/OCM-100404.orig.2025032100584996.png",
+              "ItemThumbnailURL": "https://media.openchargemap.io/images/AU/OCM100404/OCM-100404.thmb.2025032100584996.png",
+              "Comment": "Tesla Supercharger at Broadway Shopping Centre - Tesla Only Charging.",
+              "IsEnabled": true,
+              "IsVideo": false,
+              "IsFeaturedItem": false,
+              "IsExternalResource": false,
+              "User": {
+                "ID": 57365,
+                "Username": "~X~",
+                "ReputationPoints": 6,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/bb3d99d9824554473783141a520b1102?s=80&d=robohash"
+              },
+              "DateCreated": "2025-03-21T00:59:00Z"
+            }
+          ],
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2025-03-21T01:01:00Z",
+          "ID": 100404,
+          "UUID": "D0D3C711-5C0C-4858-8505-819B46C9B477",
+          "DataProviderID": 1,
+          "OperatorID": 23,
+          "OperatorsReference": "34721",
+          "UsageTypeID": 4,
+          "UsageCost": "AUD 0.42/kWh;other tariffs for older cars",
+          "AddressInfo": {
+            "ID": 100750,
+            "Title": "Broadway Supercharger",
+            "AddressLine1": "1 Bay Street",
+            "Town": "Broadway",
+            "Postcode": "2007",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.882995,
+            "Longitude": 151.194332,
+            "Distance": 0.05731765060058039,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 141823,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 120,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 8
+            }
+          ],
+          "NumberOfPoints": 8,
+          "GeneralComments": "Charging8 Superchargers, available 24/7, up to 120kW",
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2025-03-21T01:01:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2018-02-23T07:01:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_e277d9e717f28e9822fbbe62ef707efac7561fe9571da33ff2289a4ae24c0274",
+      "input_address": "1 Bells Blvd, Kingscliff, 2487",
+      "input_operator": "Evie",
+      "input_latitude": -28.27690295,
+      "input_longitude": 153.5770781,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_3a32c9499c919b9eee3b1d259654ae2aa107785987c99e7e5ae70ffe256a573f",
+      "input_address": "1 Dalgal Way, Sydney, 2037",
+      "input_operator": "Tesla",
+      "input_latitude": -33.87650055,
+      "input_longitude": 151.178,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_53fd601d36c25a323642c8ff07423030ff11df8a8e0dbf506b0cbaeff0a42cec",
+      "input_address": "1 Frederick St, Sydney, 2064",
+      "input_operator": "Evie",
+      "input_latitude": -33.81707912,
+      "input_longitude": 151.1889369,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://chargefox.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3339,
+            "Title": "Chargefox"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-15T07:52:00Z",
+          "ID": 272613,
+          "UUID": "34663A3E-0D92-42A2-A6C4-A6EC44525A0B",
+          "DataProviderID": 1,
+          "OperatorID": 3339,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.30/kWh",
+          "AddressInfo": {
+            "ID": 272997,
+            "Title": "TLE Electrical Artarmon",
+            "AddressLine1": "65 Reserve Road",
+            "AddressLine2": "",
+            "Town": "St Leonards",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2065",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.81845312500111,
+            "Longitude": 151.18932889926964,
+            "Distance": 0.15701557144414,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 468356,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "8098",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 22,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468357,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "8098",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 22,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-15T07:52:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-15T07:52:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "http://goevie.com.au/",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3398,
+            "Title": "Evie"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-15T12:12:00Z",
+          "ID": 272632,
+          "UUID": "0E8762EC-1B81-4C3D-A80C-BC9DC25BF935",
+          "DataProviderID": 1,
+          "OperatorID": 3398,
+          "UsageTypeID": 4,
+          "AddressInfo": {
+            "ID": 273016,
+            "Title": "Civic Plaza 88 Christie",
+            "AddressLine1": "88 Christie St",
+            "Town": "St Leonards",
+            "StateOrProvince": "NSW",
+            "Postcode": "2065",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.823861,
+            "Longitude": 151.195326,
+            "Distance": 0.9576231458881119,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 468438,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS026A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468439,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS026A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468440,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS026B",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468441,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS026B",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-15T12:12:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-15T12:12:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_d0abb5f909a046b8e4ad8e38f4aacd7663b733e09d8f9811e5d6b891b8bd6ec8",
+      "input_address": "1 Greenbridge Dr, Wilton, 2571",
+      "input_operator": "Chargefox",
+      "input_latitude": -34.22847652,
+      "input_longitude": 150.6841562,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_f8d92dcfda9ce8e22ab18f90fc33cff3019d784d034813f807d58e99af30f680",
+      "input_address": "1 Ingham Dr, Casula NSW 2170",
+      "input_operator": "Evie",
+      "input_latitude": -33.948829,
+      "input_longitude": 150.90027,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "http://goevie.com.au/",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3398,
+            "Title": "Evie"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-16T22:04:00Z",
+          "ID": 272688,
+          "UUID": "4933A40D-47C9-4E7C-BC64-9183936554DD",
+          "DataProviderID": 1,
+          "OperatorID": 3398,
+          "UsageTypeID": 4,
+          "AddressInfo": {
+            "ID": 273072,
+            "Title": "Casula Mall",
+            "AddressLine1": "1 Ingham Dr",
+            "AddressLine2": "",
+            "Town": "Casula",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2170",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.947906375047246,
+            "Longitude": 150.90105410921717,
+            "Distance": 0.1255234178242708,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 468601,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS030A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468602,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS030A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468603,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS030B",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468604,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS030B",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-16T22:04:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-16T22:04:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_7cde3d4e59cd084712a54481b1dd4295c6fd2f3ab426b9fa8c291f5893d98880",
+      "input_address": "1 Little Walker St, Casino, NSW 2470, Australia",
+      "input_operator": "NRMA",
+      "input_latitude": -35.442745,
+      "input_longitude": 149.7913305,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_493afb89ec4116e7dfe20763aa68c152e55b9e5cf1370f36d15e0307fd5aa3a8",
+      "input_address": "1 Park St, Sydney, 2103",
+      "input_operator": "JOLT",
+      "input_latitude": -33.67613618,
+      "input_longitude": 151.3039429,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://joltcharge.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3529,
+            "Title": "Jolt"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "UserComments": [
+            {
+              "ID": 28137,
+              "ChargePointID": 192929,
+              "CommentTypeID": 10,
+              "CommentType": {
+                "ID": 10,
+                "Title": "General Comment"
+              },
+              "UserName": "Sir Surfalot",
+              "Comment": "Charger hardware was recently replaced after a period with intermittent issues with handshaking at start of charging sessions that the operator couldn't otherwise resolve. Has been working well since then.",
+              "Rating": 5,
+              "DateCreated": "2023-02-11T02:35:22.89Z",
+              "User": {
+                "ID": 35899,
+                "Username": "Sir Surfalot",
+                "ReputationPoints": 12,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/64c656a7494411c7dab91592d58b2ce7?s=80&d=robohash"
+              },
+              "CheckinStatusTypeID": 10,
+              "CheckinStatusType": {
+                "IsPositive": true,
+                "IsAutomatedCheckin": false,
+                "ID": 10,
+                "Title": "Charged Successfully"
+              },
+              "IsActionedByEditor": false
+            }
+          ],
+          "MediaItems": [
+            {
+              "ID": 31585,
+              "ChargePointID": 192929,
+              "ItemURL": "https://media.openchargemap.io/images/AU/OCM192929/OCM-192929.orig.2022050423291375.jpeg",
+              "ItemThumbnailURL": "https://media.openchargemap.io/images/AU/OCM192929/OCM-192929.thmb.2022050423291375.jpeg",
+              "Comment": "",
+              "IsEnabled": true,
+              "IsVideo": false,
+              "IsFeaturedItem": false,
+              "IsExternalResource": false,
+              "User": {
+                "ID": 35899,
+                "Username": "Sir Surfalot",
+                "ReputationPoints": 12,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/64c656a7494411c7dab91592d58b2ce7?s=80&d=robohash"
+              },
+              "DateCreated": "2022-05-04T23:29:00Z"
+            }
+          ],
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-02-11T08:43:00Z",
+          "ID": 192929,
+          "UUID": "61C80ECC-1D9D-42AB-81F1-B1B77B6FC19B",
+          "DataProviderID": 1,
+          "OperatorID": 3529,
+          "UsageTypeID": 4,
+          "UsageCost": "First 7kWh free, then $0.46 per kWh thereafter. $5/hr idle time",
+          "AddressInfo": {
+            "ID": 193288,
+            "Title": "Mona Vale library carpark [JOLT]",
+            "AddressLine1": "1 Park St",
+            "Town": "Mona Vale",
+            "StateOrProvince": "NSW",
+            "Postcode": "2103",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.67610252225354,
+            "Longitude": 151.3038961163004,
+            "ContactTelephone1": "+61255656000",
+            "ContactEmail": "support@joltcharge.com",
+            "AccessComments": "In off-street carpark, enter from Park St",
+            "RelatedURL": "https://jolt.com.au",
+            "Distance": 0.005722596534680109,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 313618,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "1487",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 313619,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "1452",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-02-11T08:43:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2022-05-04T23:25:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://joltcharge.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3529,
+            "Title": "Jolt"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-02-11T08:43:00Z",
+          "ID": 190757,
+          "UUID": "7622FC1C-073B-4B78-AEDF-35A38303AD59",
+          "DataProviderID": 1,
+          "OperatorID": 3529,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.00/kWh up to 7 kWh then $0.46/kWh",
+          "AddressInfo": {
+            "ID": 191116,
+            "Title": "Mona Vale [JOLT]",
+            "AddressLine1": "2 Bungan St",
+            "Town": "Mona Vale",
+            "StateOrProvince": "NSW",
+            "Postcode": "2103",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.67606087720165,
+            "Longitude": 151.30325795651265,
+            "ContactTelephone1": "+61 2 5565 6000",
+            "AccessComments": "Street parking, one marked parking spot",
+            "RelatedURL": "https://jolt.com.au/sydney",
+            "Distance": 0.06393181890880385,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 309359,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "NBE001G",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 309360,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "NBE001G",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-02-11T08:43:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-12-20T03:09:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_d0bdc7857cb7d9eb465b9c75066a9ca66743c7fff663acad913f516209bf7541",
+      "input_address": "1 Perry St, Batemans Bay, 2536",
+      "input_operator": "Evie",
+      "input_latitude": -35.70737242,
+      "input_longitude": 150.1761672,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2021-12-19T02:29:00Z",
+          "ID": 157566,
+          "UUID": "EF786AC1-8A7D-4AE5-A8D2-644546B70F36",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 1,
+          "AddressInfo": {
+            "ID": 157920,
+            "Title": "Batemans Bay Visitor Centre [NRMA]",
+            "AddressLine1": "2A Beach Road",
+            "Town": "Batemans Bay",
+            "StateOrProvince": "NSW",
+            "Postcode": "2536",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -35.70850475831435,
+            "Longitude": 150.175530096314,
+            "Distance": 0.1384285410645405,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 226994,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 226995,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2021-12-19T02:29:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2020-06-16T02:19:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "http://goevie.com.au/",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3398,
+            "Title": "Evie"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-12T22:38:00Z",
+          "ID": 190706,
+          "UUID": "F6B6BFE7-9484-474D-B152-E4F10989A35A",
+          "DataProviderID": 1,
+          "OperatorID": 3398,
+          "UsageTypeID": 4,
+          "UsageCost": "50c per kWh energy consumed.",
+          "AddressInfo": {
+            "ID": 191065,
+            "Title": "Dan Murphy's",
+            "AddressLine1": "51 Orient Street",
+            "Town": "Batemans Bay",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2536",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -35.709931,
+            "Longitude": 150.17774,
+            "Distance": 0.317973403670716,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 309295,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS193A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 309296,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS193A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-12T22:38:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-12-19T02:34:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2022-11-16T10:13:00Z",
+          "ID": 209950,
+          "UUID": "2EC96913-FA6A-4583-90E7-C0B4A811ED80",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 4,
+          "UsageCost": "FREE",
+          "AddressInfo": {
+            "ID": 210330,
+            "Title": "Batemans Bay Regional Arts Aquatic & Leisure Centre [NRMA]",
+            "AddressLine1": "12 Vesper Street",
+            "Town": "Batemans Bay",
+            "StateOrProvince": "NSW",
+            "Postcode": "2536",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -35.70905218176475,
+            "Longitude": 150.17306021349532,
+            "Distance": 0.337023110867818,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 349455,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 75,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 2
+            },
+            {
+              "ID": 349456,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 75,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 2
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2022-11-16T10:13:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2022-11-16T04:19:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_ba957a1d60a66d402962a841bae99cd1a5602881984b05d2b1d9e33de987d216",
+      "input_address": "1 Plunkett St, Sydney, 2065",
+      "input_operator": "Exploren",
+      "input_latitude": -33.8215586,
+      "input_longitude": 151.1964124,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "http://goevie.com.au/",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3398,
+            "Title": "Evie"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-15T12:12:00Z",
+          "ID": 272632,
+          "UUID": "0E8762EC-1B81-4C3D-A80C-BC9DC25BF935",
+          "DataProviderID": 1,
+          "OperatorID": 3398,
+          "UsageTypeID": 4,
+          "AddressInfo": {
+            "ID": 273016,
+            "Title": "Civic Plaza 88 Christie",
+            "AddressLine1": "88 Christie St",
+            "Town": "St Leonards",
+            "StateOrProvince": "NSW",
+            "Postcode": "2065",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.823861,
+            "Longitude": 151.195326,
+            "Distance": 0.27498277534122006,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 468438,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS026A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468439,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS026A",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468440,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "MS026B",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468441,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "MS026B",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-15T12:12:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-15T12:12:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://chargefox.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3339,
+            "Title": "Chargefox"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-15T07:52:00Z",
+          "ID": 272613,
+          "UUID": "34663A3E-0D92-42A2-A6C4-A6EC44525A0B",
+          "DataProviderID": 1,
+          "OperatorID": 3339,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.30/kWh",
+          "AddressInfo": {
+            "ID": 272997,
+            "Title": "TLE Electrical Artarmon",
+            "AddressLine1": "65 Reserve Road",
+            "AddressLine2": "",
+            "Town": "St Leonards",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2065",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.81845312500111,
+            "Longitude": 151.18932889926964,
+            "Distance": 0.7398938850656748,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 468356,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "8098",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 22,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 468357,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "8098",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 22,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-15T07:52:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-15T07:52:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_d15fc9f97a2d29ed106b1322ff239a4e84b7092a885d284b6a60f7c25bf1d7a7",
+      "input_address": "1 Wharf St, Tweed Heads, 2485",
+      "input_operator": "Tesla",
+      "input_latitude": -28.17378983,
+      "input_longitude": 153.5445165,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_47faaaf7ed619356378e7907c5f87f497dc56a4dab7317b05614fd51853bb224",
+      "input_address": "1/9 Railway Parade, Kogarah NSW 2217",
+      "input_operator": "Evie",
+      "input_latitude": -33.9624686,
+      "input_longitude": 151.1324696,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_c6cb314cc030e7e7bb52bca1b918f9ab20e9c6fd01fdb0eda093cd961a792778",
+      "input_address": "10 Brookfield Rd, Minto NSW 2566",
+      "input_operator": "Evie",
+      "input_latitude": -34.03094307,
+      "input_longitude": 150.8490285,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_64c547ce2aa81fd216aa2a71d122754dbec89a7e3a2c7eb3ae44c5d1861c1972",
+      "input_address": "10 Elizabeth St, Bathurst, 2795",
+      "input_operator": "Evie",
+      "input_latitude": -33.41417222,
+      "input_longitude": 149.5833564,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.tesla.com/en_AU/support/non-tesla-supercharging",
+            "Comments": "Tesla charging including support for non-tesla vehicles",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3534,
+            "Title": "Tesla (including non-tesla)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-06-06T12:12:00Z",
+          "ID": 121552,
+          "UUID": "00690D9C-0195-436D-B0BA-F6C59E8A4CB5",
+          "DataProviderID": 1,
+          "OperatorID": 3534,
+          "OperatorsReference": "49587",
+          "UsageTypeID": 4,
+          "UsageCost": "AUD 0.66/kWh;other tariffs for older cars",
+          "AddressInfo": {
+            "ID": 121898,
+            "Title": "Bathurst Supercharger",
+            "AddressLine1": "1 Kendall Ave",
+            "Town": "Bathurst",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.41910934956461,
+            "Longitude": 149.58664011817848,
+            "ContactTelephone1": "1800 646 952",
+            "Distance": 0.6279085199855552,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 171279,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 120,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 6
+            }
+          ],
+          "NumberOfPoints": 6,
+          "GeneralComments": "6 Superchargers, available 24/7, up to 120kW - This Supercharger is open to Tesla vehicles and non Tesla vehicles with CCS compatibility.",
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-06-06T12:12:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2019-04-05T09:54:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2024-06-14T12:05:00Z",
+          "ID": 191953,
+          "UUID": "927BF22D-0EBB-4227-A7FA-A6B2910C92C9",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 4,
+          "UsageCost": "60c / 54c for NRMA Members",
+          "AddressInfo": {
+            "ID": 192312,
+            "Title": "Bathurst Visitor Information Centre",
+            "AddressLine1": "1 Kendall Avenue",
+            "Town": "Bathurst",
+            "StateOrProvince": "NSW",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.41885926313673,
+            "Longitude": 149.58885077913237,
+            "ContactTelephone1": "1300 233 544",
+            "RelatedURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles/how-to-use",
+            "Distance": 0.7291596115039746,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 311800,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 311801,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "GeneralComments": "Use NRMA or Chargefox app.",
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2024-06-14T12:05:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2022-03-10T11:57:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_7111c5da459e1385e97e441e923bc3b99b903019c59ce2f263cea61c1b7abc70",
+      "input_address": "10 Winery Dr, Port Macquarie, 2444",
+      "input_operator": "Tesla",
+      "input_latitude": -31.43610015,
+      "input_longitude": 152.8235826,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "http://www.teslamotors.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 23,
+            "Title": "Tesla (Tesla-only charging)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2021-12-19T01:54:00Z",
+          "ID": 79311,
+          "UUID": "3D72218B-DA57-451E-A233-B1F6084A8FEC",
+          "DataProviderID": 1,
+          "OperatorID": 23,
+          "OperatorsReference": "16114",
+          "UsageTypeID": 4,
+          "UsageCost": "AUD 0.52/kWh",
+          "AddressInfo": {
+            "ID": 79657,
+            "Title": "Port Macquarie Supercharger [Tesla]",
+            "AddressLine1": "764 Pacific Highway",
+            "Town": "Port Macquarie",
+            "StateOrProvince": "NSW",
+            "Postcode": "2444",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -31.4361,
+            "Longitude": 152.823582,
+            "Distance": 5.931765572927245e-05,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 113938,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 120,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 6
+            }
+          ],
+          "NumberOfPoints": 6,
+          "GeneralComments": "",
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2021-12-19T01:54:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2017-01-27T08:04:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_11a42ddd532302c6411c2070fdeebf4b3db5c058d31323e2042bfa60b576f721",
+      "input_address": "105 Station Rd, Sydney, 2147",
+      "input_operator": "Ampol",
+      "input_latitude": -33.77436041,
+      "input_longitude": 150.9448809,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_c156b026cb323b208a699afcd39a6966d32392dd7760a9ba18ccd9a6ab5f3366",
+      "input_address": "106 Parraween St, Sydney, 2090",
+      "input_operator": "Evie",
+      "input_latitude": -33.8273504,
+      "input_longitude": 151.2303373,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_aa65ed899c7474e3ba60a1b5922be9c4115a56436f6af3187920db4a736edfb0",
+      "input_address": "1067 Oxley Hwy, Thrumster, 2444",
+      "input_operator": "Chargefox",
+      "input_latitude": -31.46394199,
+      "input_longitude": 152.8219499,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://chargefox.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3339,
+            "Title": "Chargefox"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "UserComments": [
+            {
+              "ID": 32032,
+              "ChargePointID": 172921,
+              "CommentTypeID": 10,
+              "CommentType": {
+                "ID": 10,
+                "Title": "General Comment"
+              },
+              "UserName": "BigTree",
+              "Comment": "Charged 67.2kWh with XPENG G6 (2026) — reported by evconduit.com",
+              "DateCreated": "2026-09-01T11:39:03.05Z",
+              "User": {
+                "ID": 65561,
+                "Username": "BigTree",
+                "ReputationPoints": 25,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/d724057d885f245b7d86a3822ed4befd?s=80&d=robohash"
+              },
+              "CheckinStatusTypeID": 10,
+              "CheckinStatusType": {
+                "IsPositive": true,
+                "IsAutomatedCheckin": false,
+                "ID": 10,
+                "Title": "Charged Successfully"
+              },
+              "IsActionedByEditor": false
+            }
+          ],
+          "IsRecentlyVerified": true,
+          "DateLastVerified": "2026-09-01T11:39:00Z",
+          "ID": 172921,
+          "UUID": "5F6B8268-C957-4203-9FB8-3A5181817B03",
+          "DataProviderID": 1,
+          "OperatorID": 3339,
+          "UsageTypeID": 1,
+          "UsageCost": "$0.60/kWh, 20% discount for NRMA members",
+          "AddressInfo": {
+            "ID": 173280,
+            "Title": "Port Macquarie Service Centre [Chargefox]",
+            "AddressLine1": "1063 Oxley Highway",
+            "Town": "Thrumster",
+            "StateOrProvince": "NSW",
+            "Postcode": "2444",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -31.463751231214047,
+            "Longitude": 152.82172752510883,
+            "AccessComments": "Located behind the BP service station",
+            "RelatedURL": "https://chargefox.com",
+            "Distance": 0.029912686347241674,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 264538,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "4520",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 350,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 2,
+              "Comments": "$0.60/kWh\r\n20% discount for state motoring club members"
+            },
+            {
+              "ID": 264539,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "Reference": "4520",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 100,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 2,
+              "Comments": "$0.60/kWh\r\n20% discount for state motoring club members"
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2026-09-01T11:39:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-02-22T04:25:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.tesla.com/en_AU/support/non-tesla-supercharging",
+            "Comments": "Tesla charging including support for non-tesla vehicles",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3534,
+            "Title": "Tesla (including non-tesla)"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2026-03-19T05:06:00Z",
+          "ID": 480398,
+          "UUID": "6C051185-440E-40A7-8AED-AAD3FECF002E",
+          "DataProviderID": 1,
+          "OperatorID": 3534,
+          "UsageTypeID": 4,
+          "AddressInfo": {
+            "ID": 480787,
+            "Title": "John Oxley Drive",
+            "AddressLine1": "John Oxley Drive",
+            "AddressLine2": "Thrumster",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2444",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -31.458200567763306,
+            "Longitude": 152.82699819893708,
+            "Distance": 0.7980284142372249,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 806378,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "Voltage": 400,
+              "PowerKW": 250,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 12,
+          "GeneralComments": "Short Cables V3 Piles",
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2026-03-19T05:06:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2026-03-16T05:06:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": true,
+          "DateLastVerified": "2026-07-14T23:42:00Z",
+          "ID": 172920,
+          "UUID": "77EEA0C9-CFCE-4310-9D25-D74AE428CD35",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 1,
+          "UsageCost": "$0.64/kWh",
+          "AddressInfo": {
+            "ID": 173279,
+            "Title": "Sovereign Place [NRMA]",
+            "AddressLine1": "John Oxley Drive",
+            "Town": "Thrumster",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2444",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -31.458281139153392,
+            "Longitude": 152.8274557327511,
+            "AccessComments": "In the Sovereign Place shopping complex carpark",
+            "Distance": 0.8178825937832781,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 264536,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "Port Macquarie #1 and #2",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 4
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2026-07-14T23:42:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-02-22T04:15:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_5dcc044a017af4cc28fd2ad6e57fc6bf79bea6c350ddc8a979c736b09ac64736",
+      "input_address": "1068 Pittwater Rd, Sydney, 2097",
+      "input_operator": "JOLT",
+      "input_latitude": -33.73111016,
+      "input_longitude": 151.301011,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_83a64e26692d6bdb9b589fbda3f419b2f9dda619dad2cced26a61bdf5ae2b09e",
+      "input_address": "109 Beecroft Rd, Sydney, 2119",
+      "input_operator": "JOLT",
+      "input_latitude": -33.75051656,
+      "input_longitude": 151.0650831,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_776ac39be06998cf2e32e1dc28783d7254274999809038f9a91c0f02f14e1be4",
+      "input_address": "10W Apsley St, Walcha NSW 2354, Australia",
+      "input_operator": "NRMA",
+      "input_latitude": -29.960127,
+      "input_longitude": 146.8578887,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": false,
+            "IsUserSelectable": true,
+            "ID": 150,
+            "Title": "Planned For Future Date"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2021-12-17T04:02:00Z",
+          "ID": 190682,
+          "UUID": "2AA67D53-4325-45DD-A591-149698E1C2C3",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 1,
+          "UsageCost": "Currently free but will be fee at some point.",
+          "AddressInfo": {
+            "ID": 191041,
+            "Title": "Brewarrina [NRMA]",
+            "AddressLine1": "50 Bathurst Street",
+            "Town": "Brewarrina",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2839",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -29.960445999997674,
+            "Longitude": 146.85742999998627,
+            "Distance": 0.056664865334293456,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 309238,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 309239,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 150,
+          "DateLastStatusUpdate": "2021-12-17T04:02:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-12-17T04:02:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_1ad57cc2b69b4ea4b2aa94776275625c9d7e10137c7a8ea156a620b2cbbd61e7",
+      "input_address": "11 Ewingsdale Rd, Ewingsdale, 2481",
+      "input_operator": "NRMA",
+      "input_latitude": -28.63612817,
+      "input_longitude": 153.5534605,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "UserComments": [
+            {
+              "ID": 30971,
+              "ChargePointID": 190394,
+              "CommentTypeID": 10,
+              "CommentType": {
+                "ID": 10,
+                "Title": "General Comment"
+              },
+              "UserName": "stragu",
+              "Comment": "easy, successfully charged although just a little confusing which order to do the steps in.",
+              "Rating": 5,
+              "DateCreated": "2025-10-06T09:29:09.797Z",
+              "User": {
+                "ID": 58216,
+                "Username": "stragu",
+                "ReputationPoints": 6,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/c41ce19ef59a53ca799df3185223d735?s=80&d=robohash"
+              },
+              "CheckinStatusTypeID": 10,
+              "CheckinStatusType": {
+                "IsPositive": true,
+                "IsAutomatedCheckin": false,
+                "ID": 10,
+                "Title": "Charged Successfully"
+              },
+              "IsActionedByEditor": false
+            }
+          ],
+          "MediaItems": [
+            {
+              "ID": 39567,
+              "ChargePointID": 190394,
+              "ItemURL": "https://media.openchargemap.io/images/AU/OCM190394/OCM-190394.orig.2023091220454628.jpg",
+              "ItemThumbnailURL": "https://media.openchargemap.io/images/AU/OCM190394/OCM-190394.thmb.2023091220454628.jpg",
+              "Comment": "",
+              "IsEnabled": true,
+              "IsVideo": false,
+              "IsFeaturedItem": false,
+              "IsExternalResource": false,
+              "User": {
+                "ID": 48402,
+                "Username": "Toddles",
+                "ReputationPoints": 9,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/bd5eec40faf1e2356e4a2b55938806c9?s=80&d=robohash"
+              },
+              "DateCreated": "2023-09-12T20:46:00Z"
+            }
+          ],
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2025-10-06T09:29:00Z",
+          "ID": 190394,
+          "UUID": "BA6C1095-64A5-49DC-9FFA-B42055D9882E",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 1,
+          "AddressInfo": {
+            "ID": 190753,
+            "Title": "The Farm Byron Bay [NRMA]",
+            "AddressLine1": "Ewingsdale Road",
+            "Town": "Ewingsdale",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -28.63571944020704,
+            "Longitude": 153.55330117184485,
+            "Distance": 0.048035068844845805,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 308652,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 308653,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2025-10-06T09:29:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-12-04T05:42:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_a4097ff8014598e5028ca61fb797beda99adbac3c53f487eb8228e3bd3a2d578",
+      "input_address": "11 Scott St, Sydney, 2170",
+      "input_operator": "JOLT",
+      "input_latitude": -33.92522427,
+      "input_longitude": 150.9265836,
+      "candidates": []
+    },
+    {
+      "record_id": "ev_3ec5e1f5bafda5afc1a9af3cd122195ca0a2d2c55f15307de0d3609b5051a205",
+      "input_address": "110 Anzac Pde, Sydney, 2033",
+      "input_operator": "JOLT",
+      "input_latitude": -33.90717322,
+      "input_longitude": 151.2239409,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://joltcharge.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3529,
+            "Title": "Jolt"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-13T10:53:00Z",
+          "ID": 190875,
+          "UUID": "8C3BC721-A266-4AEA-945C-7D571D06FC6D",
+          "DataProviderID": 1,
+          "OperatorID": 3529,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.00/kWh up to 7 kWh then $0.40/kWh",
+          "AddressInfo": {
+            "ID": 191234,
+            "Title": "Kensington [Jolt]",
+            "AddressLine1": "110 Anzac Pde",
+            "Town": "Kensington",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2033",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.907070570863254,
+            "Longitude": 151.22409119211284,
+            "Distance": 0.017962502237444982,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 309591,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 309592,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-13T10:53:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-12-29T23:50:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "ID": 1,
+            "Title": "(Unknown Operator)"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2020-06-10T21:39:00Z",
+          "ID": 150024,
+          "UUID": "B701810B-4F38-4941-B2E6-5AF22403096A",
+          "DataProviderID": 1,
+          "OperatorID": 1,
+          "UsageTypeID": 1,
+          "UsageCost": "Free",
+          "AddressInfo": {
+            "ID": 150377,
+            "Title": "Supa Centa Moore Park",
+            "AddressLine1": "",
+            "Town": "Kensington",
+            "StateOrProvince": "NSW",
+            "Postcode": "2033",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.902079196334896,
+            "Longitude": 151.215231409333,
+            "AccessComments": "Lower parking, at the south lift, between the inclinator bays.",
+            "Distance": 0.983315411394166,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 208301,
+              "ConnectionTypeID": 30,
+              "ConnectionType": {
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 30,
+                "Title": "Tesla (Model S/X)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 2,
+              "Level": {
+                "Comments": "Over 2 kW, usually non-domestic socket type",
+                "IsFastChargeCapable": false,
+                "ID": 2,
+                "Title": "Level 2 : Medium (Over 2kW)"
+              },
+              "PowerKW": 17,
+              "CurrentTypeID": 20,
+              "CurrentType": {
+                "Description": "Alternating Current - Three Phase",
+                "ID": 20,
+                "Title": "AC (Three-Phase)"
+              },
+              "Quantity": 1,
+              "Comments": "The correct name of this shopping centre chain is \"Supa Centa\", NOT \"Supercentre\". Yeah, it's misspelled, but it's deliberate and correct."
+            }
+          ],
+          "NumberOfPoints": 1,
+          "GeneralComments": "Tesla Type 2 HPWC, might be able to charge other Type 2 vehicles.",
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2020-06-10T21:39:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2020-03-12T02:11:00Z",
+          "SubmissionStatusTypeID": 200
+        },
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://chargefox.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3339,
+            "Title": "Chargefox"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-13T10:51:00Z",
+          "ID": 191062,
+          "UUID": "3ED2D6CD-A1BB-4284-9A25-6E7F7C0A33A0",
+          "DataProviderID": 1,
+          "OperatorID": 3339,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.70/kWh",
+          "AddressInfo": {
+            "ID": 191421,
+            "Title": "Audi Centre Sydney ",
+            "AddressLine1": "895 South Dowling Street",
+            "Town": "Zetland",
+            "StateOrProvince": "NSW",
+            "Postcode": "2017",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.906943843362484,
+            "Longitude": 151.2131655272031,
+            "Distance": 0.9947378580661868,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 309952,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "5202",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 165,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-13T10:51:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2022-01-16T05:07:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_0abc3a56aeb9cc08cbbed5808ceea66dbb7457f6fcee39fa28eb4e950449dd16",
+      "input_address": "1106 Barrenjoey Rd, Sydney, 2108",
+      "input_operator": "JOLT",
+      "input_latitude": -33.59707712,
+      "input_longitude": 151.320022,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://joltcharge.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3529,
+            "Title": "Jolt"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "MediaItems": [
+            {
+              "ID": 41606,
+              "ChargePointID": 295979,
+              "ItemURL": "https://media.openchargemap.io/images/AU/OCM295979/OCM-295979.orig.2024022923133939.jpeg",
+              "ItemThumbnailURL": "https://media.openchargemap.io/images/AU/OCM295979/OCM-295979.thmb.2024022923133939.jpeg",
+              "Comment": "",
+              "IsEnabled": true,
+              "IsVideo": false,
+              "IsFeaturedItem": false,
+              "IsExternalResource": false,
+              "User": {
+                "ID": 35899,
+                "Username": "Sir Surfalot",
+                "ReputationPoints": 12,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/64c656a7494411c7dab91592d58b2ce7?s=80&d=robohash"
+              },
+              "DateCreated": "2024-02-29T23:14:00Z"
+            },
+            {
+              "ID": 41605,
+              "ChargePointID": 295979,
+              "ItemURL": "https://media.openchargemap.io/images/AU/OCM295979/OCM-295979.orig.2024022923110989.jpeg",
+              "ItemThumbnailURL": "https://media.openchargemap.io/images/AU/OCM295979/OCM-295979.thmb.2024022923110989.jpeg",
+              "Comment": "",
+              "IsEnabled": true,
+              "IsVideo": false,
+              "IsFeaturedItem": false,
+              "IsExternalResource": false,
+              "User": {
+                "ID": 35899,
+                "Username": "Sir Surfalot",
+                "ReputationPoints": 12,
+                "ProfileImageURL": "https://www.gravatar.com/avatar/64c656a7494411c7dab91592d58b2ce7?s=80&d=robohash"
+              },
+              "DateCreated": "2024-02-29T23:11:00Z"
+            }
+          ],
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2024-03-03T23:09:00Z",
+          "ID": 295979,
+          "UUID": "4A47EACD-B9EC-48F5-8DCD-15DFA845E9F7",
+          "DataProviderID": 1,
+          "OperatorID": 3529,
+          "UsageTypeID": 4,
+          "UsageCost": "First 7kWh free, then $0.49 per kWh thereafter. $5/hr idle time",
+          "AddressInfo": {
+            "ID": 296366,
+            "Title": "Barrenjoey Road",
+            "AddressLine1": "Barrenjoey Road",
+            "AddressLine2": "Palm Beach",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2108",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.597285174014345,
+            "Longitude": 151.31997898476163,
+            "Distance": 0.02347509629787461,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 527815,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 527816,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 25,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2024-03-03T23:09:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2024-02-29T23:07:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_a485e1747955a06afa5f39bdd277b82679fe8c47c03947415c44ff500c62c805",
+      "input_address": "11-37 Alexandria Pde, Sydney, 2077",
+      "input_operator": "JOLT",
+      "input_latitude": -33.70973178,
+      "input_longitude": 151.1045866,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://ampcharge.ampol.com.au/",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3625,
+            "Title": "Ampol AmpCharge"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": false,
+            "IsUserSelectable": true,
+            "ID": 150,
+            "Title": "Planned For Future Date"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-10-09T02:47:00Z",
+          "ID": 278525,
+          "UUID": "C242DF3D-1E1D-4B57-B25D-F66AF4A5E15F",
+          "DataProviderID": 1,
+          "OperatorID": 3625,
+          "UsageTypeID": 4,
+          "AddressInfo": {
+            "ID": 278912,
+            "Title": "Ampol Waitara",
+            "AddressLine1": "Corner Pacific Highway, Unwin Road",
+            "AddressLine2": "",
+            "Town": "Waitara",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2077",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.71060645301792,
+            "Longitude": 151.1025062095589,
+            "Distance": 0.21561426350767526,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 481320,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1,
+              "Comments": "yet to open"
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 150,
+          "DateLastStatusUpdate": "2023-10-09T02:47:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-09-30T02:26:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_6fddf67cd79ce70f1669da6b18638c91bb7b066b4cdf86974ec620f0e920ebea",
+      "input_address": "116 Liverpool St, Scone, NSW 2337, Australia",
+      "input_operator": "NRMA",
+      "input_latitude": -31.9598511,
+      "input_longitude": 141.4601038,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://www.mynrma.com.au/cars-and-driving/electric-vehicles",
+            "Comments": "National Roads and Motorists' Association, Australia",
+            "PhonePrimaryContact": "1300 233 544",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3388,
+            "Title": "NRMA"
+          },
+          "UsageType": {
+            "ID": 1,
+            "Title": "Public"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2021-12-17T03:14:00Z",
+          "ID": 190677,
+          "UUID": "5B44CABB-5A6B-4040-A9A0-AAECD9764FFE",
+          "DataProviderID": 1,
+          "OperatorID": 3388,
+          "UsageTypeID": 1,
+          "AddressInfo": {
+            "ID": 191036,
+            "Title": "Broken Hill [NRMA]",
+            "AddressLine1": "51 Bromide St",
+            "Town": "Broken Hill",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2880",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -31.959754641960238,
+            "Longitude": 141.45961530379066,
+            "Distance": 0.04731638527792854,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 309228,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            },
+            {
+              "ID": 309229,
+              "ConnectionTypeID": 2,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration AA",
+                "ID": 2,
+                "Title": "CHAdeMO"
+              },
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 50,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 1
+            }
+          ],
+          "NumberOfPoints": 1,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2021-12-17T03:14:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2021-12-17T03:08:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    },
+    {
+      "record_id": "ev_65e6adc18a42c876697f1b36d8fbc897eb1b9670b3092a1979310a7b67ec7513",
+      "input_address": "1183-1187 The Horsley Dr, Sydney, 2164",
+      "input_operator": "Chargefox",
+      "input_latitude": -33.84986891,
+      "input_longitude": 150.8978248,
+      "candidates": [
+        {
+          "DataProvider": {
+            "WebsiteURL": "http://openchargemap.org",
+            "DataProviderStatusType": {
+              "IsProviderEnabled": true,
+              "ID": 1,
+              "Title": "Manual Data Entry"
+            },
+            "IsRestrictedEdit": false,
+            "IsOpenDataLicensed": true,
+            "IsApprovedImport": true,
+            "License": "Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+            "ID": 1,
+            "Title": "Open Charge Map Contributors"
+          },
+          "OperatorInfo": {
+            "WebsiteURL": "https://chargefox.com",
+            "IsPrivateIndividual": false,
+            "IsRestrictedEdit": false,
+            "ID": 3339,
+            "Title": "Chargefox"
+          },
+          "UsageType": {
+            "IsPayAtLocation": false,
+            "IsMembershipRequired": true,
+            "IsAccessKeyRequired": true,
+            "ID": 4,
+            "Title": "Public - Membership Required"
+          },
+          "StatusType": {
+            "IsOperational": true,
+            "IsUserSelectable": true,
+            "ID": 50,
+            "Title": "Operational"
+          },
+          "SubmissionStatus": {
+            "IsLive": true,
+            "ID": 200,
+            "Title": "Submission Published"
+          },
+          "IsRecentlyVerified": false,
+          "DateLastVerified": "2023-07-15T09:24:00Z",
+          "ID": 272624,
+          "UUID": "14FD3EDF-276D-4923-9455-BB6BF98CB23C",
+          "DataProviderID": 1,
+          "OperatorID": 3339,
+          "UsageTypeID": 4,
+          "UsageCost": "$0.55/kWh",
+          "AddressInfo": {
+            "ID": 273008,
+            "Title": "ENGIE - Greenway Wetherill Park",
+            "AddressLine1": "1183-1187 The Horsley Drive",
+            "AddressLine2": "",
+            "Town": "Wetherill Park",
+            "StateOrProvince": "New South Wales",
+            "Postcode": "2164",
+            "CountryID": 18,
+            "Country": {
+              "ISOCode": "AU",
+              "ContinentCode": "OC",
+              "ID": 18,
+              "Title": "Australia"
+            },
+            "Latitude": -33.850403,
+            "Longitude": 150.89840155,
+            "Distance": 0.07977280383255902,
+            "DistanceUnit": 1
+          },
+          "Connections": [
+            {
+              "ID": 468412,
+              "ConnectionTypeID": 33,
+              "ConnectionType": {
+                "FormalName": "IEC 62196-3 Configuration FF",
+                "IsDiscontinued": false,
+                "IsObsolete": false,
+                "ID": 33,
+                "Title": "CCS (Type 2)"
+              },
+              "Reference": "8448",
+              "StatusTypeID": 50,
+              "StatusType": {
+                "IsOperational": true,
+                "IsUserSelectable": true,
+                "ID": 50,
+                "Title": "Operational"
+              },
+              "LevelID": 3,
+              "Level": {
+                "Comments": "40KW and Higher",
+                "IsFastChargeCapable": true,
+                "ID": 3,
+                "Title": "Level 3:  High (Over 40kW)"
+              },
+              "PowerKW": 120,
+              "CurrentTypeID": 30,
+              "CurrentType": {
+                "Description": "Direct Current",
+                "ID": 30,
+                "Title": "DC"
+              },
+              "Quantity": 2
+            }
+          ],
+          "NumberOfPoints": 2,
+          "StatusTypeID": 50,
+          "DateLastStatusUpdate": "2023-07-15T09:24:00Z",
+          "DataQualityLevel": 1,
+          "DateCreated": "2023-07-15T09:24:00Z",
+          "SubmissionStatusTypeID": 200
+        }
+      ]
+    }
+  ]
+}

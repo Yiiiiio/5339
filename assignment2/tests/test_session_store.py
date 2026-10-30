@@ -8,16 +8,16 @@ from pathlib import Path
 
 import duckdb
 
-from assignment2.storage.price_store import initialise_database
-from assignment2.storage.session_store import (
+from storage.price_store import initialise_database
+from storage.session_store import (
     get_session_readings,
     get_station_session_metrics,
     get_station_sessions,
     store_event,
 )
 
-ROOT = Path(__file__).resolve().parents[2]
-EVENTS = ROOT / "assignment2/data/events/replay_events.jsonl"
+ROOT = Path(__file__).resolve().parents[1]
+EVENTS = ROOT / "data/events/replay_events.jsonl"
 
 
 def load_events():
@@ -28,7 +28,7 @@ class SessionStoreTests(unittest.TestCase):
     def setUp(self):
         self.folder = tempfile.TemporaryDirectory()
         self.db = Path(self.folder.name) / "sessions.duckdb"
-        shutil.copy2(ROOT / "data/final/project.duckdb", self.db)
+        shutil.copy2(ROOT / "a1_dependencies/final/project.duckdb", self.db)
         initialise_database(self.db)
         events = load_events()
         self.session_id = next(e["session_id"] for e in events if e["event_type"] == "session_end")

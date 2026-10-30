@@ -4,12 +4,12 @@
     {
       "label": "Start charging dashboard",
       "type": "process",
-      "command": "${workspaceFolder}/.venv/bin/python",
+      "command": "${workspaceFolder}/assignment2/.venv/bin/python",
       "args": [
-        "assignment2/scripts/run_dashboard.py"
+        "scripts/run_dashboard.py"
       ],
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${workspaceFolder}/assignment2"
       },
       "presentation": {
         "reveal": "always",

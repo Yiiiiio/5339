@@ -18,7 +18,7 @@ Calibration sources (see README.md):
 Only the Python standard library is used.
 
 Example:
-  python assignment2/generator/generate_dataset.py --stations assignment2/data/input/stations.csv --start 2026-09-15 --days 1 --sessions-per-connector-day 3.1 2.1 --seed 5339 --out assignment2/data/generated/dc_data
+  python generator/generate_dataset.py --stations data/input/stations.csv --start 2026-09-15 --days 1 --sessions-per-connector-day 3.1 2.1 --seed 5339 --out data/generated/dc_data
 """
 import argparse
 import csv

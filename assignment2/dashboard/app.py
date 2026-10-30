@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 if not __package__:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import dash
 import dash_leaflet as dl
@@ -26,7 +26,7 @@ import plotly.graph_objects as go
 from dash import ALL, Dash, Input, Output, Patch, State, dcc, html
 from plotly.subplots import make_subplots
 
-from assignment2.dashboard.queries import DashboardData, load_simulated_stations
+from dashboard.queries import DashboardData, load_simulated_stations
 
 
 A2_ROOT = Path(__file__).resolve().parents[1]
@@ -143,7 +143,7 @@ def parse_arguments() -> argparse.Namespace:
 def start_subscriber(args: argparse.Namespace, lock: threading.Lock) -> Any:
     """Start the subscriber in a background thread, sharing ``lock`` for writes."""
 
-    from assignment2.mqtt.subscriber import PriceSubscriber
+    from mqtt.subscriber import PriceSubscriber
 
     subscriber_args = Namespace(
         host=args.mqtt_host,

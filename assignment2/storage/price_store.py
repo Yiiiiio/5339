@@ -13,7 +13,7 @@ from typing import Any, Mapping
 
 import duckdb
 
-from assignment2.storage.connection import open_database
+from storage.connection import open_database
 
 
 DEFAULT_SCHEMA_PATH = Path(__file__).resolve().parents[1] / "sql" / "a2_schema.sql"

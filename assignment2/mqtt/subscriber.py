@@ -20,9 +20,9 @@ import paho.mqtt.client as mqtt
 
 # Support both `python -m ...` and the documented script command.
 if not __package__:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from assignment2.mqtt.event_schema import (
+from mqtt.event_schema import (
     EVENT_TYPE_BY_SUFFIX,
     describe,
     validate_event as validate_schema,
@@ -128,8 +128,8 @@ class PriceSubscriber:
                     "Copy the A1 database first."
                 )
             import duckdb
-            from assignment2.storage.price_store import initialise_database
-            from assignment2.storage.session_store import store_event
+            from storage.price_store import initialise_database
+            from storage.session_store import store_event
 
             initialise_database(self.database_path)
             self.store_event = store_event

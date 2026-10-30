@@ -6,13 +6,13 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-from assignment2.mqtt import publisher, subscriber
-from assignment2.mqtt.event_schema import EVENT_ORDER, topic_for
-from assignment2.mqtt.prepare_replay_events import prepare_replay
+from mqtt import publisher, subscriber
+from mqtt.event_schema import EVENT_ORDER, topic_for
+from mqtt.prepare_replay_events import prepare_replay
 
-ROOT = Path(__file__).resolve().parents[2]
-GENERATED = ROOT / "assignment2/data/generated/dc_data"
-EVENTS = ROOT / "assignment2/data/events"
+ROOT = Path(__file__).resolve().parents[1]
+GENERATED = ROOT / "data/generated/dc_data"
+EVENTS = ROOT / "data/events"
 START = datetime(2026, 9, 15, 0, 55)
 END = datetime(2026, 9, 15, 1, 5)
 

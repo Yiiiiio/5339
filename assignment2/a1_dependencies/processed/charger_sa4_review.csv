@@ -1,0 +1,4 @@
+record_id,Station_address,candidate_sa4_code,candidate_sa4_name,candidate_distance_m,review_status,charger_crs_status,distance_crs
+ev_cba86a64f9e7cfd83617245c590c47c767ecd3439cb2732c10f0f4f430b1ef42,"1 Sandy Bay Rd
+Clontarf NSW 2093
+Australia",122,Sydney - Northern Beaches,1.7650627230443878,unresolved,Assumed WGS84; pending confirmation,EPSG:32756

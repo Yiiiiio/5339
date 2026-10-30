@@ -25,9 +25,9 @@ from typing import Any
 import paho.mqtt.client as mqtt
 
 if not __package__:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from assignment2.mqtt.event_schema import describe, topic_for, validate_event as validate_schema
+from mqtt.event_schema import describe, topic_for, validate_event as validate_schema
 
 
 MINIMUM_INTERVAL_SECONDS = 0.1

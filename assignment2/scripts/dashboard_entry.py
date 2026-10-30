@@ -1,10 +1,10 @@
 from pathlib import Path
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from assignment2.mqtt import subscriber
-from assignment2.dashboard import app
+from mqtt import subscriber
+from dashboard import app
 
 
 class ReadySubscriber(subscriber.PriceSubscriber):

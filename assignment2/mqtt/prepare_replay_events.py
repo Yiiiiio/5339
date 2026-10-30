@@ -26,10 +26,10 @@ from datetime import datetime
 from pathlib import Path
 
 if not __package__:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from assignment2.mqtt.event_schema import EVENT_ORDER, validate_event
-from assignment2.mqtt.prepare_price_events import (
+from mqtt.event_schema import EVENT_ORDER, validate_event
+from mqtt.prepare_price_events import (
     load_prices,
     make_event_id as make_price_event_id,
     parse_number,

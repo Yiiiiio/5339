@@ -25,9 +25,9 @@ from typing import Any, Mapping
 
 import duckdb
 
-from assignment2.storage.connection import open_database
+from storage.connection import open_database
 
-from assignment2.storage.price_store import (
+from storage.price_store import (
     _parse_decimal,
     _parse_timestamp,
     _required_text,

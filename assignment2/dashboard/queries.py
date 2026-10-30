@@ -17,10 +17,10 @@ from typing import Any
 
 import duckdb
 
-from assignment2.storage.connection import open_database
+from storage.connection import open_database
 
-from assignment2.storage.price_store import get_price_history
-from assignment2.storage.session_store import get_session_readings, get_station_sessions
+from storage.price_store import get_price_history
+from storage.session_store import get_session_readings, get_station_sessions
 
 
 @dataclass(frozen=True)

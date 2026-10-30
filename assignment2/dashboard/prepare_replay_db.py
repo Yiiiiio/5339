@@ -15,11 +15,11 @@ import sys
 from pathlib import Path
 
 if not __package__:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import duckdb
 
-from assignment2.storage.price_store import initialise_database
+from storage.price_store import initialise_database
 
 
 A2_ROOT = Path(__file__).resolve().parents[1]

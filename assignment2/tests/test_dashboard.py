@@ -17,7 +17,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from assignment2.dashboard.app import (
+from dashboard.app import (
     build_markers,
     charging_figure,
     create_app,
@@ -26,14 +26,14 @@ from assignment2.dashboard.app import (
     start_subscriber,
     station_signature,
 )
-from assignment2.dashboard.prepare_replay_db import prepare_replay_database
-from assignment2.dashboard.queries import DashboardData, load_simulated_stations
-from assignment2.mqtt.event_schema import topic_for
+from dashboard.prepare_replay_db import prepare_replay_database
+from dashboard.queries import DashboardData, load_simulated_stations
+from mqtt.event_schema import topic_for
 
-ROOT = Path(__file__).resolve().parents[2]
-A2_DB = ROOT / "assignment2/data/final/project_a2.duckdb"
-STATIONS = ROOT / "assignment2/data/generated/dc_data/stations.csv"
-EVENTS = ROOT / "assignment2/data/events/replay_events.jsonl"
+ROOT = Path(__file__).resolve().parents[1]
+A2_DB = ROOT / "data/final/project_a2.duckdb"
+STATIONS = ROOT / "data/generated/dc_data/stations.csv"
+EVENTS = ROOT / "data/events/replay_events.jsonl"
 
 
 def load_events():
@@ -88,8 +88,8 @@ class DashboardTests(unittest.TestCase):
             mqtt_client_id="dashboard-test", username=None, password=None,
             received_log=None, database=self.db,
         )
-        with patch("assignment2.mqtt.subscriber.mqtt.Client"), \
-                patch("assignment2.dashboard.app.threading.Thread"):
+        with patch("mqtt.subscriber.mqtt.Client"), \
+                patch("dashboard.app.threading.Thread"):
             receiver = start_subscriber(args, self.lock)
             self.data.connection = receiver.database_connection
             return receiver
